@@ -7,8 +7,8 @@ import { jwtDecode } from 'jwt-decode'
 
 const routes = [
   /*Colaboradores*/ 
-  {path: '/login', name: 'login',component: LoginApp,meta: { requiresAuth: false },},
-  {path: '/', name: 'colaborador-create',component: CreateColaboradorApp, meta: { requiresAuth: false }},
+  {path: '/', name: 'login',component: LoginApp,meta: { requiresAuth: false },},
+  {path: '/colaborador/create', name: 'colaborador-create',component: CreateColaboradorApp, meta: { requiresAuth: true }},
   {path: '/colaborador', name: 'colaborador-index',component: indexColaboradorApp, meta: { requiresAuth: true },},
   {path: '/colaborador/edit/:id', name: 'colaborador-edit',component: ()=> import('@/views/colaboradores/EditColaboradorApp.vue'),meta: { requiresAuth: true }, },
   {path: '/dashboard', name: 'dashboard',component: ()=> import('@/views/dashboardApp.vue'),meta: { requiresAuth: true }, },

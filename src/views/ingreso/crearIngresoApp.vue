@@ -406,7 +406,7 @@ Ingresar datos
         this.total = this.total - subtotal 
     },
     registro_ingreso(){
-        this.ingreso.documento=''
+        
         if(!this.ingreso.proveedor){
             this.$notify({
                 title: 'ATENCIÓN',
@@ -433,6 +433,7 @@ Ingresar datos
             })
         }else {
             this.conexion_registro()
+            this.ingreso.documento=''
         }
     },
     conexion_registro(){
