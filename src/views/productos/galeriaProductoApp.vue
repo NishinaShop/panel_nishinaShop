@@ -87,7 +87,7 @@
                       <div class="card">
                         <a >
                           <img
-                            :src="$url+'/obtener_galeria_producto/'+item.imagen"
+                            :src="item.imagen"
                             alt="..."
                             class="card-img-top"
                           />
