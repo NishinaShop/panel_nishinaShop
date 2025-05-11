@@ -203,8 +203,8 @@
             init_data(){
                 this.load_data = true
                 const url = this.filtro 
-                    ? `${this.$url}/obtener_ventas?filtro=${encodeURIComponent(this.filtro)}`
-                    : `${this.$url}/obtener_ventas`;
+                    ? `${this.$url}/listar_ventas_admin?filtro=${encodeURIComponent(this.filtro)}`
+                    : `${this.$url}/listar_ventas_admin`;
                     axios.get(url,{
                         headers: {
                         'Content-Type': 'application/json',
