@@ -127,7 +127,7 @@
                     </div> <!-- / .row -->
                 </li>
             </ul>
-            <div class="row justify-content-center" v-if="productos.length == 0">
+            <div class="row justify-content-center" v-if="ordenes.length == 0">
     <div class="col-12 col-md-6 col-xl-6 my-5">
         
         <div class="text-center">
@@ -159,7 +159,7 @@
         <div class="card-footer">
                 <b-pagination
                 v-model="currentPage"
-                :total-rows="productos.length"
+                :total-rows="ordenes.length"
                 :per-page="perPage"
                 aria-controls="my-table">
                 </b-pagination>
