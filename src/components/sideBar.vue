@@ -144,7 +144,7 @@
           </h6>
           <ul class="navbar-nav mb-md-4">
             <li class="nav-item">
-            <router-link to="/ordenes-venta" class="nav-link" active-class="active"><i class="fe fe-shopping-cart"></i> Ordenes de compra</router-link>
+            <router-link to="/ventas" class="nav-link" active-class="active"><i class="fe fe-shopping-cart"></i> Ordenes de compra</router-link>
           </li>
           </ul>
           <!-- Push content down -->

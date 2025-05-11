@@ -80,7 +80,7 @@
 
                         <!-- Avatar -->
                         <a href="#!" class="avatar avatar-lg">
-                        <img :src="item.portada" alt="..." class="avatar-img rounded">
+                        <img :src="item.venta.detalles.portada" alt="..." class="avatar-img rounded">
                         </a>
 
                     </div>
@@ -88,14 +88,14 @@
 
                         <!-- Title -->
                         <h4 class="mb-1 name">
-                        <a href="#!">{{ item.nombre }}</a>
+                        <a href="#!">{{ item.serie.toString().padStart(6,'0') }}</a>
                         </h4>
 
                         <!-- Text -->
-                        <p class="card-text small text-muted mb-1">
-                        {{ item.categoria }} &nbsp;
-                        <span v-if="!item.estado" class="item-score badge bg-danger-soft">No publicado</span>
-                        <span v-if="item.estado"class="item-score badge bg-success-soft">Publicado</span>
+                        <p class="card-text small text-muted mb-1">N. pago MP: 
+                        {{ item.transaccion }} &nbsp;
+                        <span v-if="!item.estado" class="item-score badge bg-danger-soft">Pendiente</span>
+                        <span v-if="item.estado"class="item-score badge bg-success-soft">Pagado</span>
                         </p>
 
                         <!-- Time -->
@@ -105,12 +105,13 @@
 
                     </div>
                     <div class="col-auto">
-                        <spam><b>{{ convertCurrency(item.precio) }}</b></spam>
+                        <spam><b>{{ convertCurrency(item.total) }}</b></spam>
 
                     </div>
                     <div class="col-auto">
 
                         <!-- Dropdown -->
+                        <!--
                         <div class="dropdown">
                         <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fe fe-more-vertical"></i>
@@ -120,6 +121,7 @@
                             <router-link  class="dropdown-item" :to="{name: 'galeria-producto',params:{id:item._id}}">Galeria</router-link>
                             </div>
                         </div>
+                        -->
 
                     </div>
                     </div> <!-- / .row -->
