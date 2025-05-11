@@ -214,7 +214,10 @@
                     this.ordenes = result.data
                     this.load_data = false;
                     console.log(result.data);
-                });
+                }).catch((error) => {
+    this.load_data = false;
+    console.error("Error al obtener ventas:", error.response?.data || error.message);
+});
             },
             convertDate(date){
                 return moment(date).format('DD/MM/YYYY')
