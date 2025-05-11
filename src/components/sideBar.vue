@@ -51,10 +51,10 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="sidebarIcon"
           >
-            <a href="./profile-posts.html" class="dropdown-item">Profile</a>
-            <a href="./account-general.html" class="dropdown-item">Settings</a>
+            <a href="" class="dropdown-item">Profile</a>
+            <a href="" class="dropdown-item">Settings</a>
             <hr class="dropdown-divider" />
-            <a href="./sign-in.html" class="dropdown-item">Logout</a>
+            <a href="" class="dropdown-item">Logout</a>
           </div>
         </div>
       </div>
@@ -89,24 +89,24 @@
               aria-expanded="true"
               aria-controls="sidebarDashboards"
             >
-              <i class="fe fe-home"></i> Dashboards
+              <i class="fe fe-home"></i> Dashboard
             </a>
             <div class="collapse show" id="sidebarDashboards">
               <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active"> Default </a>
+                  <a href="./index.html" class="nav-link active">  </a>
                 </li>
                 <li class="nav-item">
                   <a
                     href="./dashboard-project-management.html"
                     class="nav-link"
                   >
-                    Project Management
+                    
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="./dashboard-ecommerce.html" class="nav-link">
-                    E-Commerce
+                    
                   </a>
                 </li>
               </ul>
@@ -136,6 +136,15 @@
           </li>
           <li class="nav-item">
             <router-link to="/ingreso/crear" class="nav-link" active-class="active"><i class="fe fe-folder"></i> Ingresos</router-link>
+          </li>
+          </ul>
+          <hr class="navbar-divider my-3">
+          <h6 class="navbar-heading">
+            Ventas
+          </h6>
+          <ul class="navbar-nav mb-md-4">
+            <li class="nav-item">
+            <router-link to="/ordenes-venta" class="nav-link" active-class="active"><i class="fe fe-shopping-cart"></i> Ordenes de compra</router-link>
           </li>
           </ul>
           <!-- Push content down -->
