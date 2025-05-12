@@ -387,7 +387,7 @@ export default {
             }
         }).then((result)=>{
             this.producto = result.data
-            this.str_img = this.$url+'/obtener_portada_producto/'+this.producto.portada;
+            this.str_img = this.producto.portada;
         })
     },
       uploadImage($event){

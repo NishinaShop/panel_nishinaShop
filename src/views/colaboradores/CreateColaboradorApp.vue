@@ -91,7 +91,7 @@
             <hr class="my-5" />
             <!-- Button -->
             <button type="button" class="btn btn-primary" v-on:click="validar()">
-            Guardar colabborador</button>
+            Guardar colaborador</button>
             </form>
             <br /><br />
           </div>

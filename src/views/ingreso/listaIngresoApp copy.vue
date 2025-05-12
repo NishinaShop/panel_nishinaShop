@@ -233,7 +233,7 @@
         <tbody class="fs-base" v-if="detalles.length >= 1">
             <tr v-for="(item,index) in detalles">
             <td>
-                <a>{{ item.titulo_producto, }}</a>
+                <a>{{ item.titulo_producto}}</a>
             </td>
             <td>
         <time datetime="2020-04-24">{{ convertCurrency(item.precio_unidad) }}</time>
@@ -283,7 +283,7 @@ Ingresar datos
     var currencyFormatter = require ('currency-formatter');
     
     export default {
-    name: 'crearIngresoApp',
+    name: 'listaIngresoApp',
     data(){
        return{
         ingreso:{
@@ -297,7 +297,6 @@ Ingresar datos
         producto: [],
         productos:[],
         variedades:[],
-        descripcion_var: {},
         total: 0,
        }
     },

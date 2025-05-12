@@ -19,7 +19,9 @@ const routes = [
   {path: '/producto/galeria/:id', name: 'galeria-producto',component: ()=> import('@/views/productos/galeriaProductoApp.vue'),meta: { requiresAuth: true }, },
   /*ingresos*/
   {path: '/ingreso/crear', name: 'crear-ingreso',  component: ()=> import('@/views/ingreso/crearIngresoApp.vue'), meta: {requiresAuth: true},},
-  {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}}
+  {path: '/ingreso', name: 'lista ingreso', component: ()=> import('@/views/ingreso/listaIngresoApp copy.vue')},
+  /*Ventas*/
+  {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}},
 ] 
 
 const router = createRouter({
