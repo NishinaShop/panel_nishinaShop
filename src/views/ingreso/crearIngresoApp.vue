@@ -233,7 +233,7 @@
         <tbody class="fs-base" v-if="detalles.length >= 1">
             <tr v-for="(item,index) in detalles">
             <td>
-                <a>{{ item.titulo_producto, }}</a>
+                <a>{{ item.titulo_producto }}</a>
             </td>
             <td>
         <time datetime="2020-04-24">{{ convertCurrency(item.precio_unidad) }}</time>

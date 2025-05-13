@@ -80,7 +80,7 @@
 
                         <!-- Avatar -->
                         <a href="#!" class="avatar avatar-lg">
-                        <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/6633320_eboxfa.png" alt="..." class="avatar-img rounded">
+                        <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/5334066_dxuran.png" alt="..." class="avatar-img rounded">
                         </a>
 
                     </div>
