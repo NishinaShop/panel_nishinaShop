@@ -19,7 +19,7 @@ const routes = [
   {path: '/producto/galeria/:id', name: 'galeria-producto',component: ()=> import('@/views/productos/galeriaProductoApp.vue'),meta: { requiresAuth: true }, },
   /*ingresos*/
   {path: '/ingreso/crear', name: 'crear-ingreso',  component: ()=> import('@/views/ingreso/crearIngresoApp.vue'), meta: {requiresAuth: true},},
-  {path: '/ingreso', name: 'lista ingreso', component: ()=> import('@/views/ingreso/listaIngresoApp copy.vue')},
+  {path: '/ingreso', name: 'lista ingreso', component: ()=> import('@/views/ingreso/listaIngresoApp copy.vue'),  meta: {requiresAuth: true},},
   /*Ventas*/
   {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}},
 ] 
@@ -28,6 +28,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL || '/'),
   routes
 })
+
 router.beforeEach((to, from, next) => {
  if (to.matched.some(item => item.meta.requiresAuth)){
   if(!store.state.token){

@@ -162,50 +162,6 @@
               <i class="fe fe-bell"></i>
             </span>
           </a>
-
-          <!-- Dropup -->
-          <div class="dropup">
-            <!-- Toggle -->
-            <a
-              href="#"
-              id="sidebarIconCopy"
-              class="dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <div class="avatar avatar-sm avatar-online">
-                <img
-                  src="/assets/img/avatar-1.png"
-                  class="avatar-img rounded-circle"
-                  alt="..."
-                />
-              </div>
-            </a>
-
-            <!-- Menu -->
-            <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
-              <a href="./profile-posts.html" class="dropdown-item">Profile</a>
-              <a href="./account-general.html" class="dropdown-item"
-                >Settings</a
-              >
-              <hr class="dropdown-divider" />
-              <a href="./sign-in.html" class="dropdown-item">Logout</a>
-            </div>
-          </div>
-
-          <!-- Icon -->
-          <a
-            class="navbar-user-link"
-            data-bs-toggle="offcanvas"
-            href="#sidebarOffcanvasSearch"
-            aria-controls="sidebarOffcanvasSearch"
-          >
-            <span class="icon">
-              <i class="fe fe-search"></i>
-            </span>
-          </a>
         </div>
       </div>
       <!-- / .navbar-collapse -->

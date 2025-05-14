@@ -23,9 +23,9 @@
                         <!-- Nav -->
                         <ul class="nav nav-tabs nav-overflow header-tabs">
                           <li class="nav-item">
-                            <a class="nav-link ">
+                            <router-link class="nav-link " to="/ingreso">
                               Ingresos
-                            </a>
+                            </router-link>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link active" >Nuevo ingreso </a>

@@ -121,6 +121,8 @@
                         <option value=""disabled selected>Seleccionar</option>
                         <option value="Mujer">Mujer</option>
                         <option value="Hombre">Hombre</option>
+                        <option value="Niña">Niña</option>
+                        <option value="Niño">Niño</option>
                       </select>
                     </div>
                   </div>

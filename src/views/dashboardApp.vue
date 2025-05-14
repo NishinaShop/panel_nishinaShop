@@ -14,7 +14,7 @@
                     <!-- Pretitle -->
                     <h6 class="header-pretitle">Panel de administración</h6>
                     <!-- Title -->
-                    <h1 class="header-title">Colaboradores</h1>
+                    <h1 class="header-title">Dashboard</h1>
                   </div>
                 </div>
                 <!-- / .row -->

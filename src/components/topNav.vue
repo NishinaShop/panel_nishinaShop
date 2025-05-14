@@ -25,10 +25,10 @@
 
           <!-- Menu -->
           <div class="dropdown-menu dropdown-menu-end">
-            <a href="./profile-posts.html" class="dropdown-item">Profile</a>
-            <a href="./account-general.html" class="dropdown-item">Settings</a>
+            <a  class="dropdown-item">Perfil</a>
+            <a  class="dropdown-item">ajustes</a>
             <hr class="dropdown-divider" />
-            <a href="./sign-in.html" class="dropdown-item">Logout</a>
+            <a  class="dropdown-item" @click="logout()">Cerrar sesión</a>
           </div>
         </div>
       </div>
@@ -39,7 +39,15 @@
 <script>
 export default {
   name: "topNav",
+ 
+  methods:{
+  logout(){
+    this.$store.dispatch("logout");
+      if(this.$router.path !== '/') this.$router.push({ name: "login" });
+  }
+}
 };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

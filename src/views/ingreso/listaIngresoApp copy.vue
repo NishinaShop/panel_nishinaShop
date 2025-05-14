@@ -14,7 +14,7 @@
                         <!-- Pretitle -->
                         <h6 class="header-pretitle">Panel de administración</h6>
                         <!-- Title -->
-                        <h1 class="header-title">Nuevo Ingreso</h1>
+                        <h1 class="header-title">Lista de ingresos</h1>
                       </div>
                     </div>
                     <!-- / .row -->
@@ -23,12 +23,12 @@
                         <!-- Nav -->
                         <ul class="nav nav-tabs nav-overflow header-tabs">
                           <li class="nav-item">
-                            <a class="nav-link ">
-                              Ingresos
+                            <a class="nav-link active">
+                               Ingresos
                             </a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link active" >Nuevo ingreso </a>
+                            <router-link class="nav-link" to="/ingreso/crear">Nuevo ingreso </router-link>
                           </li>
                         </ul>
                       </div>
@@ -36,236 +36,156 @@
                   </div>
                 </div>
                 <div class="row">
-<div class="col-12 col-md-6">
+    <div class="col-12 col-md-6">
 
-<!-- Last name -->
-<div class="form-group">
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                <div class="col">
 
-    <!-- Label -->
-    <label class="form-label">
-        Proveedor
-    </label>
-    <small class="form-text text-muted">
-        Proveedor encargado del ingreso.
-    </small>
-    <!-- Input -->
-    <select class="form-select mb-3" v-model="ingreso.proveedor">
-        <option value="" selected disable>Seleccionar</option>
-        <option>Red marin</option>
-        <option>Otro</option>
-    </select>
+                    <!-- Title -->
+                    <h6 class="text-uppercase text-muted mb-2">
+                        Inversión
+                    </h6>
 
+                    <!-- Heading -->
+                    <span class="h2 mb-0">
+                        <b>$29/mo</b>
+                    </span>
+
+                </div>
+                <div class="col-auto">
+
+                    <!-- Icon -->
+                    <a class="btn btn-sm btn-primary text-white" href="pricing.html">Upgrade</a>
+
+                </div>
+                </div> <!-- / .row -->
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+
+        <!-- Card -->
+        <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+            <div class="col">
+
+                <!-- Title -->
+                <h6 class="text-uppercase text-muted mb-2">
+                    N° ingresos <i class="fe fe-info" data-bs-toggle="tooltip" data-title="Your limits renew on May 1, 2020" data-bs-original-title="" title=""></i>
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                    <b>7,500 of 10,000</b>
+                </span>
+
+            </div>
+            <div class="col-auto">
+
+                <!-- Chart -->
+                <div class="chart chart-sparkline">
+                <canvas class="chart-canvas" id="sparklineChart" width="75" height="35" style="display: block; box-sizing: border-box; height: 35px; width: 75px;"></canvas>
+                </div>
+
+            </div>
+            </div> <!-- / .row -->
+
+        </div>
+        </div>
+
+    </div>
 </div>
 
-</div>
+<div class="card">
+    <div class="card-header">
 
-<div class="col-12 col-md-6">
+        <!-- Title -->
+        <h4 class="card-header-title">
+            <b>Ingresos</b>
+        </h4>
+        <div class="col-auto">
 
-<!-- Last name -->
-<div class="form-group">
+            <input type="month" class="form-control form-control-sm">
 
-    <!-- Label -->
-    <label class="form-label">
-        N° comprobante
-    </label>
-    <small class="form-text text-muted">
-        Número de la factura.
-    </small>
-    <!-- Input -->
-        <input type="text" class="form-control" placeholder="5DSF-000154" v-model="ingreso.ncomprobante">
-
-</div>
-
-</div>
-
-<div class="col-12 col-md-6">
-
-<!-- Last name -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-        Monto total
-    </label>
-    <small class="form-text text-muted">
-        Monto total pagado al proveedor.
-    </small>
-    <!-- Input -->
-        <input type="text" class="form-control" placeholder="546"v-model="ingreso.monto_total">
-
-</div>
-
-</div>
-
-<div class="col-12 col-md-6">
-
-<!-- Last name -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-        Comprobante
-    </label>
-    <small class="form-text text-muted">
-        Selecciona el comprobante del ingreso.(requerido)
-    </small>
-    <!-- Input -->
-        <input type="file" class="form-control" v-on:change="uploadComprobante($event)" >
-
-</div>
-
-</div>
-</div>
-
-<hr class="my-5">
-
-<div class="row">
-
-<div class="col-md-12 mb-4">
-    <h3><b>Productos del ingreso</b></h3>
-</div>
-
-<div class="col-12 col-md-6">
-
-<!-- First name -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-    Producto
-    </label>
-    <small class="form-text text-muted">
-        Selecciona el producto
-    </small>
-    <!-- Input -->
-    <model-select  :options="productos" 
-    v-model="producto"
-    :selected-option="producto"
-    placeholder="Selecciona el producto"
-    @update:modelValue="producto_selected" 
-    ></model-select >
-
-</div>
-
-</div>
-
-<div class="col-12 col-md-6">
-
-<!-- First name -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-    Variedad
-    </label>
-    <small class="form-text text-muted">
-        Selecciona la variedad
-    </small>
-    <!-- Input -->
-    <select class="form-select mb-3" v-model="detalle.variedad">
-        <option value="" selected disable>Seleccionar</option>
-        <option :value="item._id" v-for="item in variedades">{{ item.color.toUpperCase()}} - {{item.talla.toUpperCase()}} - {{ item.stock }}</option>
-    </select >
-
-</div>
-
-</div>
-
-
-<div class="col-12 col-md-6">
-
-<!-- Phone -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-    Precio unidad
-    </label>
-    <small class="form-text text-muted">
-        Ingresa el precio por unidad
-    </small>
-    <!-- Input -->
-    <input type="text" class="form-control mb-3" placeholder="0.00" v-model="detalle.precio_unidad">
-
-</div>
-
-</div>
-<div class="col-12 col-md-6">
-
-<!-- Birthday -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-    Cantidad total
-    </label>
-    <small class="form-text text-muted">
-        Ingresa cantidad de unidades que ingresan al stock
-    </small>
-    <!-- Input -->
-    <input type="number" class="form-control mb-3" placeholder="0" v-model="detalle.cantidad" >
-
-</div>
-
-</div>
-
-<div class="col-md-6 ">
-    
-    <button class="btn btn-primary" style="margin-bottom: 1.8rem!important;" v-on:click="agregar_detalle()">
-        Agregar
-    </button>
-</div>
-</div> <!-- / .row -->
-
-<!-- Button -->
-<div class="card ">
-<div class="table-responsive mb-0">
-    <table class="table table-sm table-nowrap card-table">
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm table-nowrap card-table">
         <thead>
             <tr>
-            <th>Producto:</th>
-            <th>Precio unidad:</th>
-            <th>Cantidad:</th>
-            <th>Subtotal:</th>
-            <th></th>
+            <th>Invoice ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Status</th>
             </tr>
         </thead>
-        <tbody class="fs-base" v-if="detalles.length >= 1">
-            <tr v-for="(item,index) in detalles">
-            <td>
-                <a>{{ item.titulo_producto}}</a>
-            </td>
-            <td>
-        <time datetime="2020-04-24">{{ convertCurrency(item.precio_unidad) }}</time>
-            </td>
-            <td>
-                {{ item.cantidad }}
-            </td>
-            <td> {{ convertCurrency(item.precio_unidad * item.cantidad ) }}</td>
-            <td>
-                <button class="btn btn-danger btn-sm" v-on:click="eliminar_detalle(index,item.precio_unidad * item.cantidad )">Quitar</button>
-            </td>
-            </tr>
-            
-        </tbody>
-        <tbody class="fs-base" v-if="detalles.length == 0">
+        <tbody class="fs-base">
             <tr>
-                <td class="text-center" colspan="5"><span class="text-muted">No se han agregado detalles en el ingreso</span></td>
+            <td>
+                <a href="invoice.html">Invoice #10395</a>
+            </td>
+            <td>
+                <time datetime="2020-04-24">Apr. 24, 2020</time>
+            </td>
+            <td>
+                $29.00
+            </td>
+            <td>
+                <span class="badge bg-secondary">Outstanding</span>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <a href="invoice.html">Invoice #10244</a>
+            </td>
+            <td>
+                <time datetime="2020-03-24">Mar. 24, 2020</time>
+            </td>
+            <td>
+                $29.00
+            </td>
+            <td>
+                <span class="badge bg-success">Paid</span>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <a href="invoice.html">Invoice #10119</a>
+            </td>
+            <td>
+                <time datetime="2020-02-24">Feb. 24, 2020</time>
+            </td>
+            <td>
+                $29.00
+            </td>
+            <td>
+                <span class="badge bg-success">Paid</span>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <a href="invoice.html">Invoice #10062</a>
+            </td>
+            <td>
+                <time datetime="2020-01-24">Jan. 24, 2020</time>
+            </td>
+            <td>
+                $29.00
+            </td>
+            <td>
+                <span class="badge bg-success">Paid</span>
+            </td>
             </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="4">Total:</td>
-                <td>{{ convertCurrency(total) }}</td>
-            </tr>
-        </tfoot>
-    </table>
+        </table>
+    </div>
 </div>
-</div>
-
-<button class="btn btn-primary mb-7" v-on:click="registro_ingreso()">
-Ingresar datos
-</button>
               </div>
             </div>
             <!-- / .row -->
@@ -283,7 +203,7 @@ Ingresar datos
     var currencyFormatter = require ('currency-formatter');
     
     export default {
-    name: 'listaIngresoApp',
+    name: 'crearIngresoApp',
     data(){
        return{
         ingreso:{
