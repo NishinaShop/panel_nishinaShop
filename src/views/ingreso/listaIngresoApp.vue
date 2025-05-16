@@ -62,6 +62,7 @@
                             <th>Fecha:</th>
                             <th>Total:</th>
                             <th>Factura:</th>
+                            <th>*</th>
                             </tr>
                         </thead>
                         <tbody class="fs-base" v-if="ingresos.length >= 1">
@@ -76,9 +77,15 @@
                                 {{convertCurrency(item.monto_total)}}
                             </td>
                             <td>
-                                <a href="" target="_blank">
-                                    <span class="badge bg-primary">{{ item.ncomprobante }}</span>
+                                <a :href="item.documento" target="_blank">
+                                    <span class="badge bg-primary"><b>{{ item.ncomprobante }}</b></span>
                                 </a>
+                            </td>
+                            <td>
+                                <button type="button"class="btn btn-primary btn-sm"> <router-link :to="{name: 'detalle-ingreso', params:{id:   item._id}}">
+                                    <b class="text-white">detalles</b>
+                                </router-link></button>
+                                
                             </td>
                             </tr>
                         </tbody>
@@ -114,7 +121,11 @@
         </div>
     </div>
       </template>
-      
+<style>
+.btn-custom {
+    color: white !important;
+  }
+</style>
 <script>
     import sideBar from "@/components/sideBar.vue";
     import topNav from "@/components/topNav.vue";

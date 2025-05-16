@@ -290,7 +290,8 @@ Ingresar datos
             proveedor: ''
         },
         detalle:{
-            variedad: ''
+            variedad: '',
+            producto: ''
         },
         detalles:[],
         comprobante: undefined,
@@ -390,6 +391,7 @@ Ingresar datos
             })
             }else{
             this.detalles.push(this.detalle);
+            console.log(this.detalles)
             let subtotal = this.detalle.precio_unidad * this.detalle.cantidad;
             this.total = this.total + subtotal;
             this.detalle = {
@@ -471,7 +473,7 @@ Ingresar datos
                 text: 'Se registro el ingreso',
                 type:'success'
             })
-            
+            this.$router.push({name:  'lista-ingreso'})
         }
         }).catch((error)=>{
             console.log("Error completo:", error.response.data);

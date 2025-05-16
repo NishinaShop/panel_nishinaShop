@@ -20,6 +20,7 @@ const routes = [
   /*ingresos*/
   {path: '/ingreso/crear', name: 'crear-ingreso',  component: ()=> import('@/views/ingreso/crearIngresoApp.vue'), meta: {requiresAuth: true},},
   {path: '/ingreso', name: 'lista-ingreso', component: ()=> import('@/views/ingreso/listaIngresoApp.vue'),  meta: {requiresAuth: true},},
+  {path: '/ingreso/detalle/:id', name: 'detalle-ingreso', component: ()=> import('@/views/ingreso/detalleIngresoApp.vue'),  meta: {requiresAuth: true},},
   /*Ventas*/
   {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}},
 ] 

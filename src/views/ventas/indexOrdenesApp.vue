@@ -35,26 +35,25 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                <!-- Files -->
+                <!-- Files --> <small class="d-flex justify-content-end">Nota: se visualizan las ultimas 20 ordenes de compra</small>
                     <div class="card" data-list="{&quot;valueNames&quot;: [&quot;name&quot;]}">
                     <div class="card-header">
                 <!-- Title -->
                     <h4 class="card-header-title">
                     Ordenes
                     </h4>
+                    <button class="btn btn-danger" v-if="filtro" v-on:click="borrar_filtro()">X</button>
         </div>
         <div class="card-header">
-            <div class="input-group input-group-flush input-group-merge input-group-reverse">
-
-                <!-- Input -->
-                <input class="form-control list-search" type="search" placeholder="Busca una orden" v-model="filtro" @input="init_data()">
-
-                <!-- Prepend -->
-                <div class="input-group-text">
-                <span class="fe fe-search"></span>
+            <div class="row mb-5 mt-5">
+                    <div class="col-9 d-flex">
+                        <input type="date" class="form-control" v-model="desde" style="margin-right: 1rem"/>
+                        <input type="date" class="form-control" v-model="hasta"/>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" style="width:100%" v-on:click="filtro_ventas()">Buscar</button>
+                    </div>
                 </div>
-
-            </div>
 
         </div>
         <div class="card-body">
@@ -146,7 +145,7 @@
 
         <!-- Subheading -->
         <p class="text-muted mb-4">
-            Al parecer no hay ningun producto que mostrar, intenta nuevamente.
+            Al parecer no hay ninguna orden que mostrar, intenta nuevamente.
         </p>
 
         
@@ -189,6 +188,9 @@
         name: 'indexProductosApp',
         data(){
             return {
+                filtro: false,
+                desde: '',
+                hasta: '',
                 ordenes: [],
                 filtro: '',
                 load_data: false,
@@ -204,10 +206,8 @@
         methods:{
             init_data(){
                 this.load_data = true
-                const url = this.filtro 
-                    ? `${this.$url}/listar_ventas_admin?filtro=${encodeURIComponent(this.filtro)}`
-                    : `${this.$url}/listar_ventas_admin`;
-                    axios.get(url,{
+                
+                    axios.get(this.$url+'/listar_ventas_admin',{
                         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': this.$store.state.token,
@@ -215,7 +215,7 @@
                 }).then((result)=>{
                     this.ordenes = result.data
                     this.load_data = false;
-                    console.log(result.data);
+                    console.log(result);
                 }).catch((error) => {
     this.load_data = false;
     console.error("Error al obtener ventas:", error.response?.data || error.message);
@@ -227,7 +227,38 @@
             convertCurrency(number){
                 return currencyFormatter.format(number,{code:'MXN'})
             },
+            filtro_ventas(){
+                if(!this.desde){
+                this.$notify({
+                    title: 'ATENCIÓN',
+                    text: 'Seleccione la fecha de inicio para el rango de búsqueda',
+                    type: 'warn',
+                })
+            }else if(!this.hasta){
+                this.$notify({
+                    title: 'ATENCIÓN',
+                    text: 'Seleccione la fecha de fin para el rango de búsqueda',
+                    type: 'warn',
+                })
+            }else{
+                this.filtro  = true
+                axios.get(this.$url+'/obtener_ordenes_venta_admin/'+this.desde+'/'+this.hasta,{
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': this.$store.state.token
+                }
+            }).then((result)=>{
+                this.ordenes = result.data                
+            })
+        }
         },
+        borrar_filtro(){
+            this.filtro = false
+            this.init_data()
+        }
+    },
+
+        
     beforeMount() {
                 this.init_data();
             },
