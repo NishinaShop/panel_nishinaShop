@@ -53,48 +53,39 @@
                             </span>
                           </div>
                         </form>
-
-                      </div>
-                      
-                      <div class="col-auto">
-
-                        <!-- Dropdown -->
-                        <button class="btn btn-sm btn-white" type="button" v-on:click="filtrar()">
-                          <i class="fe fe-sliders me-1"></i> Filtro <span class="badge bg-primary ms-1 d-none">0</span>
-                        </button>
-
                       </div>
                     </div> <!-- / .row -->
                   </div>
-                  <div class="table-responsive">
-                    <table class="table table-sm table-hover table-nowrap card-table">
+                 <div class="card-body p-0">
+                   <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
+                    <table class="table table-sm table-hover table-nowrap card-table "style="width: 100%; table-layout: fixed;">
                       <thead>
                         <tr>
-                          <th>
+                          <th style="width: 25%;">
                             <a class="list-sort text-muted" >Nombre</a>
                           </th>
-                          <th>
+                          <th style="width: 20%;">
                             <a class="list-sort text-muted" >Cargo</a>
                           </th>
-                          <th>
+                          <th style="width: 30%;">
                             <a class="list-sort text-muted" >Email</a>
                           </th>
-                          <th>
+                          <th style="width: 10%;">
                             <a class="list-sort text-muted" >Estado</a>
                           </th>
-                          <th>
-                            <a class="list-sort text-muted" >Acciones</a>
+                          <th style="width: 10%;">
+                            <a class="list-sort text-muted" ></a>
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody >
                         <tr v-for="item in colaboradores">
                               
                               <td>
                                 <!-- Avatar -->
                                 <div class="avatar avatar-xs align-middle me-2">
                                   <img class="avatar-img rounded-circle" src="/assets/img/avatar-1.png" alt="...">
-                                </div> <a class="item-name text-reset" >{{item.nombre}} {{item.apellidos}}</a>
+                                </div> <a class="item-name text-reset" >{{item.nombre.split(" ")[0] }} {{item.apellidos.split(" ")[0] }}</a>
     
                               </td>
                               <td>
@@ -105,7 +96,7 @@
                               </td>
                               <td>
                                 <!-- Email -->
-                                <a class="item-email text-reset">{{ item.email }}</a>
+                                <a class="item-email text-reset">{{ item.email.substr(0,28) }}</a>
                               </td>
                                 <!-- Badge -->
                                 <td>
@@ -146,6 +137,7 @@
                       </tr>
                     </table>
                   </div>
+                 </div>
                    <div class="card-footer d-flex justify-content-between">
                     <!-- Pagination (prev) -->
                     <ul class="list-pagination-prev pagination pagination-tabs card-pagination">

@@ -17,7 +17,7 @@
       <!-- Brand -->
       <a class="navbar-brand" href="./index.html">
       <img
-          src="/assets/img/Nishina_logo.jpg"
+          src="https://res.cloudinary.com/dqitdaxd8/image/upload/nishina-logo_Mesa_de_trabajo_1_a0mio8.png"
           class="navbar-brand-img mx-auto"
           alt="..."
         />
@@ -135,7 +135,7 @@
             <router-link to="/producto" class="nav-link" active-class="active"><i class="fe fe-shopping-cart"></i> Productos</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/ingreso/crear" class="nav-link" active-class="active"><i class="fe fe-folder"></i> Ingresos</router-link>
+            <router-link to="/ingreso" class="nav-link" active-class="active"><i class="fe fe-folder"></i> Ingresos</router-link>
           </li>
           </ul>
           <hr class="navbar-divider my-3">

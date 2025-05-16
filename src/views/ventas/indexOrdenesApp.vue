@@ -14,7 +14,7 @@
                         <!-- Pretitle -->
                         <h6 class="header-pretitle">Panel de administración</h6>
                         <!-- Title -->
-                        <h1 class="header-title">Listado de ordes de compra</h1>
+                        <h1 class="header-title">Listado de ordenes de compra</h1>
                       </div>
                     </div>
                     <!-- / .row -->
@@ -79,8 +79,8 @@
                     <div class="col-auto">
 
                         <!-- Avatar -->
-                        <a href="#!" class="avatar avatar-lg">
-                        <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/5334066_dxuran.png" alt="..." class="avatar-img rounded">
+                        <a class="avatar avatar-lg">
+                        <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/5334066_dxuran.png" alt="..." class="avatar-img rounded" >
                         </a>
 
                     </div>
@@ -88,21 +88,23 @@
 
                         <!-- Title -->
                         <h4 class="mb-1 name">
-                        <a href="#!">{{ item.serie.toString().padStart(6,'0') }}</a>
+                        <a href="#!">Orden #{{ item.serie.toString().padStart(6,'0') }}</a> &nbsp;
+                        <span class="item-score badge bg-primary-soft">{{ item.estado_orden }}</span>
                         </h4>
 
                         <!-- Text -->
-                        <p class="card-text small text-muted mb-1">N. pago MP: 
+                        <p class="card-text small text-muted mb-1">ID pago: 
                         {{ item.transaccion }} &nbsp;
-                        <span v-if="!item.estado" class="item-score badge bg-danger-soft">Pendiente</span>
-                        <span v-if="item.estado"class="item-score badge bg-success-soft">Pagado</span>
+                        <span v-if="item.estado == 'Pendiente'" class="item-score badge bg-warning-soft">Pendiente</span>
+                        <span v-if="item.estado == 'Pagado'"class="item-score badge bg-success-soft">Pagado</span>
+                        <span v-if="item.estado == 'Cancelado'"class="item-score badge bg-danger-soft">Cancelado</span>
                         </p>
 
                         <!-- Time -->
                         <p class="card-text small text-muted">
                         Creación <time datetime="2018-01-03">{{ convertDate(item.createdAt) }}</time>
                         </p>
-
+                        
                     </div>
                     <div class="col-auto">
                         <spam><b>{{ convertCurrency(item.total) }}</b></spam>

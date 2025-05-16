@@ -432,6 +432,12 @@ Ingresar datos
                 text: 'Agrega una factura al ingreso',
                 type:'warn'
             })
+        }else if(this.total > this.ingreso.monto_total) {
+            this.$notify({
+                title: 'ATENCIÓN',
+                text: 'El total de las variedades no puede ser mayor al de la factura',
+                type:'warn'
+            })
         }else {
             this.conexion_registro()
             this.ingreso.documento=''
@@ -440,7 +446,6 @@ Ingresar datos
     conexion_registro(){
         var fm = new FormData();
         fm.append('proveedor',this.ingreso.proveedor);
-        fm.append('ganancia',this.$ganancia)
         fm.append('ncomprobante',this.ingreso.ncomprobante);
         fm.append('monto_total',this.ingreso.monto_total);
         fm.append('monto_resultante',this.total);
@@ -469,7 +474,7 @@ Ingresar datos
             
         }
         }).catch((error)=>{
-            console.log(error);
+            console.log("Error completo:", error.response.data);
         });
     },
     },

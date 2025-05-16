@@ -165,6 +165,24 @@
                       />
                     </div>
                   </div>
+                  <div class="col-12 col-md-6">
+                    <!-- Last name -->
+                    <div class="form-group">
+                      <!-- Label -->
+                      <label class="form-label" > Descuento </label>
+                      <small class="form-text text-muted">
+                        Indique el descuanto en %
+                      </small>
+                      <!-- Input -->
+                      <input v-if="descuento"
+                      v-model="producto.desc_porcentaje"
+                        type="number"
+                        class="form-control"
+                        placeholder="Precio"
+                        value="0"
+                      />
+                    </div>
+                  </div>
 
                   <div class="col-12 col-md-12">
                     <!-- Phone -->
@@ -242,6 +260,7 @@
                               type="checkbox"
                               id="switchTwo"
                               v-model="producto.descuento" 
+                              v-on:change="descuentoActivado()"
                             />
                             <label
                               class="form-check-label"
@@ -297,11 +316,20 @@ export default {
         estado: true,
         descuento: false,
         portada: undefined,
+        desc_porcentaje: 0
       },
       portada: undefined,
+      descuento: false,
     }
   },
   methods:{
+    descuentoActivado(){
+      if (!this.descuento){
+        this.descuento = true
+      } else {
+        this.descuento = false
+      }
+    },
       uploadImage($event){
         var img;
         if($event.target.files.length >= 1){
@@ -364,7 +392,13 @@ export default {
           text: 'Ingresa la imagen de portada',
           type: 'error',
         });
-      } else{
+      } else if(this.producto.desc_porcentaje > 100){
+        this.$notify({
+          title: 'ATENCIÓN',
+          text: 'El rango del descuento % es del 0 al 100',
+          type: 'error',
+        });
+      }else{
         this.registro()
       }
     },
