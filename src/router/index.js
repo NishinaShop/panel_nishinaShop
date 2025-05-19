@@ -10,7 +10,8 @@ const routes = [
   {path: '/', name: 'login',component: LoginApp,meta: { requiresAuth: false },},
   {path: '/colaborador/create', name: 'colaborador-create',component: CreateColaboradorApp, meta: { requiresAuth: true }},
   {path: '/colaborador', name: 'colaborador-index',component: indexColaboradorApp, meta: { requiresAuth: true },},
-  {path: '/colaborador/edit/:id', name: 'colaborador-edit',component: ()=> import('@/views/colaboradores/EditColaboradorApp.vue'),meta: { requiresAuth: true }, },
+  {path: '/colaborador/edit/:id', name: 'colaborador-edit', component: ()=> import('@/views/colaboradores/EditColaboradorApp.vue'),meta: { requiresAuth: true },},
+  {path: '/colaborador/perfil/:id', name: 'colaborador-perfil', component: ()=> import('@/views/colaboradores/perfilColaborador.vue'), meta: {requiresAuth: true}},
   {path: '/dashboard', name: 'dashboard',component: ()=> import('@/views/dashboardApp.vue'),meta: { requiresAuth: true }, },
   /*Productos*/ 
   {path: '/producto/crear', name: 'crear-producto',  component: ()=> import('@/views/productos/crearProductoApp.vue'), meta: {requiresAuth: true},},
@@ -23,6 +24,7 @@ const routes = [
   {path: '/ingreso/detalle/:id', name: 'detalle-ingreso', component: ()=> import('@/views/ingreso/detalleIngresoApp.vue'),  meta: {requiresAuth: true},},
   /*Ventas*/
   {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}},
+  {path: '/ventas/detalles/:id', name: 'detalles-venta', component: () => import('@/views/ventas/ordenDetallesApp.vue'),meta: {requiresAuth: true}}
 ] 
 
 const router = createRouter({

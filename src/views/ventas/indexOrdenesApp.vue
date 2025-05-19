@@ -110,7 +110,10 @@
 
                     </div>
                     <div class="col-auto">
-
+                        <button type="button"class="btn btn-primary btn-sm"> <router-link :to="{name: 'detalles-venta', params:{id: item._id}}">
+                                    <b class="text-white">detalles</b>
+                                </router-link></button>
+                                
                         <!-- Dropdown -->
                         <!--
                         <div class="dropdown">

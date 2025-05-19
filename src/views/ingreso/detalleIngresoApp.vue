@@ -203,7 +203,7 @@
                         <tbody class="fs-base">
                             <tr v-for="item in detalles">
                             <td>
-                                <a href="invoice.html">{{ item.producto.nombre }}</a>
+                                <a v-if="item.producto">{{ item.producto.nombre }}</a>
                             </td>
                             <td>
                                 <time datetime="2020-04-24">{{ item.variedad.color+'-'+item.variedad.talla }}</time>
@@ -243,7 +243,9 @@
         ingreso:{
           serie: 0,
         },
-        detalles:[],
+        detalles:[
+          
+        ],
         usuario: {
             nombre: ''
         }

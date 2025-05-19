@@ -163,7 +163,24 @@
                       />
                     </div>
                   </div>
-
+                  <div class="col-12 col-md-6" >
+                    <!-- Last name -->
+                    <div class="form-group">
+                      <!-- Label -->
+                      <label class="form-label" > Descuento </label>
+                      <small class="form-text text-muted">
+                        Indique el descuanto en %
+                      </small>
+                      <!-- Input -->
+                      <input 
+                      v-model="producto.desc_porcentaje"
+                        type="number"
+                        class="form-control"
+                        placeholder="descuento"
+                        value="0"
+                      />
+                    </div>
+                  </div>
                   <div class="col-12 col-md-12">
                     <!-- Phone -->
                     <div class="form-group">
@@ -240,6 +257,7 @@
                               type="checkbox"
                               id="switchTwo"
                               v-model="producto.descuento" 
+                              v-on:change="descuentoActivado()"
                             />
                             <label
                               class="form-check-label"
@@ -374,13 +392,30 @@ export default {
         estado: true,
         descuento: false,
         portada: undefined,
+        
       },
+      total: 0,
       portada: undefined,
       variedad: {},
       variedades:[],
     }
   },
+  mounted(){
+  },
   methods:{
+    calcular_descuento(){
+      const precio = parseInt(this.producto.precio);
+      const descuento = parseInt(this.producto.desc_porcentaje) / 100
+      this.total = precio - (precio * descuento)
+      
+    },
+     descuentoActivado(){
+      if (!this.descuento){
+        this.descuento = true
+      } else {
+        this.descuento = false
+      }
+    },
     init_data(){
         axios.get(this.$url+'/obtener_producto_admin/'+this.$route.params.id,{
             headers:{
@@ -461,6 +496,57 @@ export default {
       }
     },
     actualizar() {
+      if(this.producto.descuento === true){
+        if(this.producto.desc_porcentaje > 100){
+          this.$notify({
+            title: 'ATENCIÓN',
+            text: 'Ingresa un porcentaje valido',
+            type: 'warn'
+          })
+        }else {
+          this.calcular_descuento()
+        console.log(this.total);
+        const formData = new FormData();
+  
+  // Agrega todos los campos obligatorios
+  formData.append('nombre', this.producto.nombre);
+  formData.append('clave', this.producto.clave);
+  formData.append('genero', this.producto.genero);
+  formData.append('categoria', this.producto.categoria);
+  formData.append('descripcion', this.producto.descripcion);
+  formData.append('estado', this.producto.estado);
+  formData.append('descuento', this.producto.descuento);
+  formData.append('precio', this.total);
+
+  // Solo agrega la imagen si existe
+  if (this.portada instanceof File) {
+    formData.append('portada', this.portada);
+  }
+
+  axios.put(`${this.$url}/actualizar_producto_admin/${this.$route.params.id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': this.$store.state.token
+    }
+  }).then((result) => {
+    this.$notify({
+      title: 'ÉXITO',
+      text: 'Producto actualizado correctamente',
+      type: 'success'
+    });
+    this.$router.push({name:  'index-producto'});
+  }).catch((error) => {
+    console.error('Error detallado:', error.response?.data);
+    this.$notify({
+      title: 'ERROR',
+      text: error.response?.data?.message || 'Error al actualizar el producto',
+      type: 'error'
+    });
+  });
+        }
+        
+      
+}else {
   const formData = new FormData();
   
   // Agrega todos los campos obligatorios
@@ -497,6 +583,8 @@ export default {
       type: 'error'
     });
   });
+}
+  
 },
     validar_variedad(){
         if(!this.variedad.color){

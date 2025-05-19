@@ -98,7 +98,8 @@
           this.mns_error = result.data.message;
         }
         if(result.data.token){
-          this.$store.dispatch('saveToken',result.data.token);
+          this.$store.dispatch('saveToken',result.data.token)
+          this.$store.dispatch('saveUser',JSON.stringify(result.data.usuario));
           this.$router.push({name:'dashboard'});
         }
       }).catch((error)=>{

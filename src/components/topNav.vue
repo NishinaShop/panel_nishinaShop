@@ -25,10 +25,9 @@
 
           <!-- Menu -->
           <div class="dropdown-menu dropdown-menu-end">
-            <a  class="dropdown-item">Perfil</a>
-            <a  class="dropdown-item">ajustes</a>
+            <router-link  class="dropdown-item" :to="{name: 'colaborador-perfil', params:{id:user._id}}">Perfil</router-link>
             <hr class="dropdown-divider" />
-            <a  class="dropdown-item" @click="logout()">Cerrar sesión</a>
+            <a  class="dropdown-item" type="button" @click="logout()">Cerrar sesión</a>
           </div>
         </div>
       </div>
@@ -39,7 +38,16 @@
 <script>
 export default {
   name: "topNav",
- 
+  data(){
+    return{
+      user : {}
+    }
+  },
+  created(){
+    this.user = JSON.parse(this.$store.state.user)
+  },
+ beforeMount(){
+ },
   methods:{
   logout(){
     this.$store.dispatch("logout");

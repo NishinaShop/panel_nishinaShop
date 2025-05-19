@@ -162,10 +162,18 @@
         Selecciona la variedad
     </small>
     <!-- Input -->
-    <select class="form-select mb-3" v-model="detalle.variedad">
-        <option value="" selected disable>Seleccionar</option>
-        <option :value="item._id" v-for="item in variedades">{{ item.color.toUpperCase()}} - {{item.talla.toUpperCase()}} - {{ item.stock }}</option>
-    </select >
+    <select 
+    class="form-select mb-3" 
+    v-model="detalle.variedad" 
+    @change="informacion_producto($event)">
+    <option value="" selected disabled>Seleccionar</option>
+    <option 
+      v-for="item in variedades" 
+      :value="item._id"
+      :data-texto="`${item.color}-${item.talla}`">
+      {{ item.color.toUpperCase() }} - {{ item.talla.toUpperCase() }} - {{ item.stock }}
+    </option>
+  </select>
 
 </div>
 
@@ -234,6 +242,9 @@
             <tr v-for="(item,index) in detalles">
             <td>
                 <a>{{ item.titulo_producto }}</a>
+                <div>
+                    <small>{{item.inf_variedad}}</small>
+                </div>
             </td>
             <td>
         <time datetime="2020-04-24">{{ convertCurrency(item.precio_unidad) }}</time>
@@ -291,7 +302,8 @@ Ingresar datos
         },
         detalle:{
             variedad: '',
-            producto: ''
+            producto: '',
+            inf_variedad: '',
         },
         detalles:[],
         comprobante: undefined,
@@ -353,6 +365,11 @@ Ingresar datos
         this.init_variedades(item.value)
         this.detalle.producto = item.value;
         this.detalle.titulo_producto = item.text;
+    },
+    informacion_producto(event){
+      const selectedOption = event.target.options[event.target.selectedIndex];
+      
+      this.detalle.inf_variedad = selectedOption.dataset.texto;
     },
     init_variedades(id){
         axios.get(this.$url+'/obtener_variedades_producto/'+id,{

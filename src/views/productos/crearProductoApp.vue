@@ -178,7 +178,7 @@
                       v-model="producto.desc_porcentaje"
                         type="number"
                         class="form-control"
-                        placeholder="Precio"
+                        placeholder="descuento"
                         value="0"
                       />
                     </div>
