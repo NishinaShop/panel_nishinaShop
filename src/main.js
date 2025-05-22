@@ -13,7 +13,7 @@ app.use(Notifications);
 app.use(Paginate);
 app.use(bootstrapVue);
 
-app.config.globalProperties.$url = 'https://api-nishinashop.onrender.com/api';
+app.config.globalProperties.$url = 'https://api.nishinashop.com/api';
 app.config.globalProperties.$token = localStorage.getItem('token');
 app.config.globalProperties.$ganancia = 30;
 
