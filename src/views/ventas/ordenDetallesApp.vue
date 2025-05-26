@@ -86,7 +86,7 @@
 
             <!-- Title -->
             <h5 class="mb-0">
-            Total de la orden:
+            Total de compra:
             </h5>
 
         </div>
@@ -94,7 +94,27 @@
 
             <!-- Text -->
             <small class="text-muted">
-            {{convertCurrency(venta.total + venta.envio)}}
+            {{convertCurrency(venta.total)}}
+            </small>
+
+        </div>
+        </div> <!-- / .row -->
+    </div>
+    <div class="list-group-item">
+        <div class="row align-items-center">
+        <div class="col">
+
+            <!-- Title -->
+            <h5 class="mb-0">
+            Envio:
+            </h5>
+
+        </div>
+        <div class="col-auto">
+
+            <!-- Text -->
+            <small class="text-muted">
+            {{convertCurrency(venta.envio)}}
             </small>
 
         </div>

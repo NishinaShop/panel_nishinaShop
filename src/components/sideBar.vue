@@ -128,14 +128,23 @@
         </ul>
         <hr class="navbar-divider my-3">
           <h6 class="navbar-heading">
-            Inventario
+            Almacen
           </h6>
           <ul class="navbar-nav mb-md-4">
             <li class="nav-item">
             <router-link to="/producto" class="nav-link" active-class="active"><i class="fe fe-shopping-cart"></i> Productos</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/ingreso" class="nav-link" active-class="active"><i class="fe fe-folder"></i> Ingresos</router-link>
+            <router-link to="/ingreso" class="nav-link" active-class="active"><i class="fe fe-folder-plus"></i> Ingresos</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/salidas" class="nav-link" active-class="active"><i class="fe fe-folder-minus"></i>Salidas</router-link>
+          </li>
+          <li class="nav-item" >
+            <router-link to="/inventario" class="nav-link" active-class="active"><i class="fe fe-list"></i>Inventario</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/extraordinario" class="nav-link" active-class="active"><i class="fe fe-clipboard"></i>Extraordinario</router-link>
           </li>
           </ul>
           <hr class="navbar-divider my-3">

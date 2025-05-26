@@ -24,7 +24,15 @@ const routes = [
   {path: '/ingreso/detalle/:id', name: 'detalle-ingreso', component: ()=> import('@/views/ingreso/detalleIngresoApp.vue'),  meta: {requiresAuth: true},},
   /*Ventas*/
   {path: '/ventas', name: 'ordenes-venta', component:()=> import('@/views/ventas/indexOrdenesApp.vue'),meta: {requiresAuth: true}},
-  {path: '/ventas/detalles/:id', name: 'detalles-venta', component: () => import('@/views/ventas/ordenDetallesApp.vue'),meta: {requiresAuth: true}}
+  {path: '/ventas/detalles/:id', name: 'detalles-venta', component: () => import('@/views/ventas/ordenDetallesApp.vue'),meta: {requiresAuth: true}},
+  /*Salidas*/
+  {path: '/salidas', name: 'lista-salidas', component:()=> import('@/views/salidas/salidasApp.vue'),meta: {requiresAuth: true}},
+  /*Inventario*/
+  {path: '/inventario', name: 'lista-inventario', component:()=> import ('@/views/inventario/inventarioApp.vue'),meta: {requiresAuth: true}},
+  /*Extraoridario*/
+  {path: '/extraordinario', name: 'lista-extra', component:()=> import ('@/views/extraordinario/indexExtraApp.vue'),meta: {requiresAuth: true}},
+  {path: '/extraordinario/salida', name: 'salida-extra', component:()=> import ('@/views/extraordinario/salidaExtraApp.vue'),meta: {requiresAuth: true}},
+  {path: '/extraordinario/ingreso', name: 'ingreso-extra', component:()=> import ('@/views/extraordinario/ingresoExtraApp.vue'),meta: {requiresAuth: true}},
 ] 
 
 const router = createRouter({
