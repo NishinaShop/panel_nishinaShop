@@ -49,11 +49,7 @@
         Proveedor encargado del ingreso.
     </small>
     <!-- Input -->
-    <select class="form-select mb-3" v-model="ingreso.proveedor">
-        <option value="" selected disable>Seleccionar</option>
-        <option>Red marin</option>
-        <option>Otro</option>
-    </select>
+    <input type="text" class="form-control" placeholder="Ingresa el proveedor" v-model="ingreso.proveedor">
 
 </div>
 

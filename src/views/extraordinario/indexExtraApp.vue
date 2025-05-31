@@ -28,10 +28,10 @@
                         </a>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/extraordinario/ingreso" class="nav-link">Nuenvo ingreso</router-link>
+                        <router-link to="/extraordinario/ingreso" class="nav-link">Nuevo ingreso</router-link>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/extraordinario/salida" class="nav-link">Nuenva salida</router-link>
+                        <router-link to="/extraordinario/salida" class="nav-link">Nueva salida</router-link>
                       </li>
                     </ul>
                   </div>

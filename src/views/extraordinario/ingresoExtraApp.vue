@@ -27,11 +27,11 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link active">
-                           Nuenvo ingreso
+                           Nuevo ingreso
                         </a>
                       </li>
                       <li class="nav-item">
-                        <router-link to="/extraordinario/salida" class="nav-link">Nuenva salida</router-link>
+                        <router-link to="/extraordinario/salida" class="nav-link">Nueva salida</router-link>
                       </li>
                     </ul>
                   </div>

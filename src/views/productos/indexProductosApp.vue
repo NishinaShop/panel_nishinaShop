@@ -121,6 +121,7 @@
                             <div class="dropdown-menu dropdown-menu-end">
                             <router-link  class="dropdown-item" :to="{name: 'edit-producto',params:{id:item._id}}">Modificar</router-link>
                             <router-link  class="dropdown-item" :to="{name: 'galeria-producto',params:{id:item._id}}">Galeria</router-link>
+                            <a class="dropdown-item text-danger"style="cursor:pointer" @click="eliminar_producto(item._id)">Eliminar</a>
                             </div>
                         </div>
 
@@ -223,6 +224,29 @@
             convertCurrency(number){
                 return currencyFormatter.format(number,{code:'MXN'})
             },
+            eliminar_producto(id){
+                axios.delete(this.$url+'/eliminar_producto_admin/'+id,{
+                    headers:{
+                        'Content-type': 'application/json',
+                        'Authorization': this.$store.state.token,
+                    }
+                }).then((result)=>{
+                    if(result.data.message){
+                        this.$notify({
+                              title: 'SUCCESS',
+                              text: result.data.message,
+                              type: 'success',
+                            })
+                    }else{
+                        this.$notify({
+                              title: 'SUCCESS',
+                              text: 'Producto eliminado',
+                              type: 'success',
+                            })
+                    this.init_data()
+                    }
+                })
+            }
         },
     beforeMount() {
                 this.init_data();
