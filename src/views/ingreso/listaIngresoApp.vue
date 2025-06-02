@@ -91,7 +91,7 @@
                         </tbody>
                         <tbody v-if="ingresos.length == 0">
                             <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <div class="row justify-content-center">
                                         <div class="col-12 col-md-6 col-xl-12 my-5">
                                             <div class="text-center">

@@ -109,7 +109,7 @@
                         </tbody>
                         <tbody v-if="productos.length == 0">
                             <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <div class="row justify-content-center">
                                         <div class="col-12 col-md-6 col-xl-12 my-5">
                                             <div class="text-center">
@@ -117,7 +117,7 @@
                                                     Sin registros.
                                                 </h6>
                                                 <h1 class="mb-3">
-                                                <b>No hay registros en ese margen de fechas</b>
+                                                <b>No hay registros con los parametros actuales</b>
                                                 </h1>
                                                  <p class="text-muted mb-4">
                                                     Ingresa un rango de busqueda diferente 

@@ -46,8 +46,8 @@
               </div>
             </div>
             <!-- Submit -->
-            <button class="btn btn-lg w-100 btn-primary mb-3" type="button" v-on:click="validar">
-              Ingresar
+            <button class="btn btn-lg w-100 btn-primary mb-3" type="button" v-on:click="validar"> <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/kOnzy_ikzcfe.gif" class="me-3" v-if="loading == true" style="width: 20px !important;">
+              <span class="text-center">Ingresar</span>
             </button>
           </form>
         </div>
@@ -65,11 +65,12 @@
       return{
         email: '',
         password:'',
-        mns_error:''
+        mns_error:'',
+        loading: false
       }
     },
     created(){
-      console.log(this.$url);
+
     },
     methods:{
       validar(){
@@ -84,6 +85,7 @@
         console.log(this.mns_error)
       },
       login(){
+        this.loading = true
       let data = {
         email: this.email,
         password: this.password
@@ -98,6 +100,7 @@
           this.mns_error = result.data.message;
         }
         if(result.data.token){
+          this.loading = false
           this.$store.dispatch('saveToken',result.data.token)
           this.$store.dispatch('saveUser',JSON.stringify(result.data.usuario));
           this.$router.push({name:'dashboard'});
