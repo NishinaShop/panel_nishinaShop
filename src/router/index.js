@@ -33,6 +33,10 @@ const routes = [
   {path: '/extraordinario', name: 'lista-extra', component:()=> import ('@/views/extraordinario/indexExtraApp.vue'),meta: {requiresAuth: true}},
   {path: '/extraordinario/salida', name: 'salida-extra', component:()=> import ('@/views/extraordinario/salidaExtraApp.vue'),meta: {requiresAuth: true}},
   {path: '/extraordinario/ingreso', name: 'ingreso-extra', component:()=> import ('@/views/extraordinario/ingresoExtraApp.vue'),meta: {requiresAuth: true}},
+  /*Categorias */
+  {path: '/categorias', name: 'categorias', component:()=> import('@/views/productos/categoriasApp.vue'),meta: {requiresAuth: true}},
+  /*Variedades */
+  {path: '/variedades/:id', name: 'variedades', component:()=> import('@/views/productos/variedadesApp.vue')}
 ] 
 
 const router = createRouter({

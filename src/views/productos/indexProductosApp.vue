@@ -120,6 +120,7 @@
                         </a>
                             <div class="dropdown-menu dropdown-menu-end">
                             <router-link  class="dropdown-item" :to="{name: 'edit-producto',params:{id:item._id}}">Modificar</router-link>
+                            <router-link  class="dropdown-item" :to="{name: 'variedades',params:{id:item._id}}">Variedades</router-link>
                             <router-link  class="dropdown-item" :to="{name: 'galeria-producto',params:{id:item._id}}">Galeria</router-link>
                             <a class="dropdown-item text-danger"style="cursor:pointer" @click="eliminar_producto(item._id)">Eliminar</a>
                             </div>

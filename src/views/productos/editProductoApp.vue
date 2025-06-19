@@ -132,17 +132,7 @@
                       <label class="form-label"> Categoria </label>
                       <select name="" class="form-select" v-model="producto.categoria">
                         <option value="" disabled selected>Seleccionar</option>
-                        <option value="Tops">Tops</option>
-                        <option value="Jeans">Jeans</option>
-                        <option value="Interior">Interior</option>
-                        <option value="Basicos">Basicos</option>
-                        <option value="Camisas">Camisas</option>
-                        <option value="blusas">blusas</option>
-                        <option value="Shorts">Shorts</option>
-                        <option value="Sudaderas">Sudaderas</option>
-                        <option value="Blazers y chalecos">Blazers y chalecos</option>
-                        <option value="Chamarras y abrigos">Chamarras y abrigos</option>
-                        <option value="Oversize">Oversize</option>
+                        <option :value="item.categoria.titulo" v-for="item in categorias">{{ item.categoria.titulo }}</option>
                       </select>
                     </div>
                   </div>
@@ -398,6 +388,7 @@ export default {
       portada: undefined,
       variedad: {},
       variedades:[],
+      categorias:[],
     }
   },
   mounted(){
@@ -658,10 +649,23 @@ export default {
         } 
       });
     },
+    init_categorias(){
+      axios.get(this.$url+'/listar_categorias',{
+        headers:{
+          'Content-type': 'application/json',
+          'Authorization': this.$store.state.token
+        }
+      }).then((result)=>{
+        this.categorias = result.data
+        console.log(this.categorias);
+        
+      })
+      },
 },
   beforeMount(){
     this.init_data();
     this.init_variedades()
+    this.init_categorias()
   },
 }
 </script>
