@@ -275,84 +275,10 @@
 
                 <!-- Button -->
                 
-                <div class="row justify-content-between align-items-center mb-5">
-    <div class="col-12">
 
-        <!-- Heading -->
-        <h2 class="mb-2">
-            Variedades de producto
-        </h2>
 
-        <!-- Text -->
-        <p class="text-muted mb-xl-0">
-        Agrega el color y la talla para que posteriormente se le agrege el stock
-        </p>
-    </div>
-    
-</div>
 
-<div class="row mb-5">
-    <div class="col-lg-5">
-        <small class="text-muted">
-            Color
-        </small>
-        <input type="text" class="form-control" placeholder="Agrega el color." v-model="variedad.color">
-    </div>
-    <div class="col-lg-5">
-        <small class="text-muted">
-            Talla
-        </small>
-        <input type="text" class="form-control" placeholder="Agrega la talla." v-model="variedad.talla">
-    </div>
-    <div class="col">
-            <br>
-        <button class="btn btn-primary btn-block" style="width: 100% !important;" v-on:click="validar_variedad()">Agregar</button>
-    </div>
-</div>
-<small class="text-muted">
-            Nota: Si hay unidades en el stock no se pueden eliminar la variedad
-        </small>
-<div class="card">
-    <div class="card-body">
 
-        <!-- List group -->
-        <div class="list-group list-group-flush my-n3" >        
-        <div class="list-group-item" v-for="item in variedades">
-            <div class="row align-items-center">
-            <div class="col">
-
-                <!-- Heading -->
-                <h4 class="mb-1"> {{item.color.toUpperCase()}}-{{item.talla.toUpperCase()}}</h4>
-
-                <!-- Text -->
-                <small class="text-muted">
-                  {{item.sku.toUpperCase()}}
-                </small>
-
-            </div>
-            <div class="col-auto">
-              Stock:
-            </div>
-            <div class="col">
-              {{ item.stock }}
-            </div>
-            <div class="col-auto">
-
-                <!-- Button -->
-                <button v-if="item.stock == 0" class="btn btn-sm btn-danger"  type="button" @click="eliminar_variedad(item._id)">
-                Eliminar
-                </button>
-                <button v-if="item.stock >= 1" disabled class="btn btn-sm btn-danger"  type="button" >
-                Eliminar
-                </button>
-
-            </div>
-            </div> <!-- / .row -->
-        </div>        
-        </div>
-
-    </div>
-</div>
               </div>
             </div>
           </div>
