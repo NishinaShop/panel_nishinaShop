@@ -51,8 +51,30 @@
                     <div class="col-12 col-md-12">
                       <!-- Email address -->
                       <div class="form-group">
+                        <div class="row align-items-center mb-3">
+                        <div class="col-auto">
+                        <div style="height: 100px!important; width: 100px!important">
+                              <img :src="producto.portada" alt="..." class="avatar-img rounded-circle">
+                        </div>
+                        
+                    </div>
+                            <small class="form-text text-muted text-end col ms-n2">
+                          Nota: Sube un maximo de 5 imagenes por color en cada producto
+                          <br />
+                          Solo imagenes tipo PNG, JPG, JPEG o WEBP no mayor a
+                          1mb.
+                        </small>
+                    </div>
+                        <div class="mb-3 col-6">
+                          <small>Selecciona el color:</small>
+                          <select name="" class="form-select" v-model="color" >
+                        <option value=""disabled selected>Seleccionar</option>
+                        <option :value="item.colores._id" v-for="item in variedades"> {{item.colores.color}}</option>
+                        
+                      </select>
+                        </div>
                         <!-- Label -->
-                        <label class="mb-1"> Imagen </label>
+                        <small class="mb-1">Selecciona la imagen correspondiente al color </small>
                         <!-- Input -->
                         <div class="input-group mb-3">
                           <input
@@ -70,28 +92,25 @@
                           </button>
                         </div>
                         <!-- Form text -->
-                        <small class="form-text text-muted">
-                          Subo un maximo de 5 imagenes para la galeria del
-                          producto.
-                          <br />
-                          Solo imagenes tipo PNG, JPG, JPEG o WEBP no mayor a
-                          1mb.
-                        </small>
+                       
                       </div>
                     </div>
                   </div>
                   <!-- / .row -->
 
-                  <div class="row listAlias" v-if="!load_galeria">
-                    <div class="col-12 col-md-6 col-xl-4" v-for="item in galeria">
-                      <div class="card">
+                  <div class="row listAlias border mb-3" style="backgroundColor: white; border-radius: 10px;" v-if="!load_galeria" v-for="item in galeria">
+                    <h2 class="mt-3">Color: {{item.color.color}}</h2>
+                    <div class="col-12 col-md-6 col-xl-4" v-for="sub in item.imagenes" >
+                      <div class="card" >
                         <a >
+                          
                           <img
-                            :src="item.imagen"
-                            alt="..."
+                            :src="sub"
+                            style="height: 250px; width: 190px"
                             class="card-img-top"
                           />
                         </a>
+                        
                         <div class="card-footer card-footer-boxed">
                           <div class="row">
                             <div class="col text-center">
@@ -148,9 +167,23 @@ export default {
       load_data: true,
       load_galeria: true,
       galeria: [],
+      color: '',
+      variedades:[]
     };
   },
   methods: {
+    init_colores(){
+      axios.get (this.$url+'/obtener_colores/'+this.$route.params.id,{
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': this.$store.state.token,
+            }
+        }).then((result)=>{
+            this.variedades = result.data;
+            console.log(this.variedades);
+            
+        })
+    },
     init_data() {
       this.load_data = true;
       axios.get(this.$url + "/obtener_producto_admin/" + this.$route.params.id, {
@@ -206,7 +239,13 @@ export default {
       console.log(this.image);
     },
     subir_imagen() {
-      if (this.image == undefined) {
+      if(this.color == ''){
+        this.$notify({
+          title: "ATENCION",
+          text: "No se selecciono el color",
+          type: "warn",
+        });
+      }else if (this.image == undefined) {
         this.$notify({
           title: "ATENCION",
           text: "No se selecciono ninguna imagen",
@@ -216,6 +255,7 @@ export default {
         var fm = new FormData();
         fm.append("producto", this.$route.params.id);
         fm.append("imagen", this.image);
+        fm.append("color", this.color)
 
         axios
           .post(this.$url + "/subir_imagen_producto_admin", fm, {
@@ -255,8 +295,9 @@ export default {
           },
         })
         .then((result) => {
-          console.log(result);
+          
           this.galeria = result.data
+          console.log(this.galeria);
           this.load_galeria = false;
         });
     },
@@ -287,6 +328,7 @@ export default {
   beforeMount() {
     this.init_data()
     this.init_galeria()
+    this.init_colores()
   },
 };
 </script>

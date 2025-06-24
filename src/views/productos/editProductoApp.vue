@@ -272,13 +272,6 @@
                 <button class="btn btn-primary" v-on:click="validar()">Guardar cambios</button>
                 <!-- Divider -->
                 <hr class="mt-4 mb-5" />
-
-                <!-- Button -->
-                
-
-
-
-
               </div>
             </div>
           </div>
@@ -312,8 +305,6 @@ export default {
       },
       total: 0,
       portada: undefined,
-      variedad: {},
-      variedades:[],
       categorias:[],
     }
   },
@@ -503,78 +494,7 @@ export default {
 }
   
 },
-    validar_variedad(){
-        if(!this.variedad.color){
-            this.$notify({
-                title: 'ATENCIÓN',
-                text: 'Agregar el color',
-                type: 'warn'
-            });
-        } else if(!this.variedad.talla){
-            this.$notify({
-                title: 'ATENCIÓN',
-                text: 'Agregar la talla',
-                type: 'warn'
-            });
-        } else {
-            this.variedad.producto = this.$route.params.id;
-            this.variedad.sku = this.generar_sku()
-            this.registar_variedad()
-        }
-    },
-    registar_variedad(){
-      axios.post(this.$url+'/registro_variedad_producto',this.variedad,{
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': this.$store.state.token
-        }
-      }).then((result)=>{
-        this.variedad = {};
-        this.$notify({
-            title: 'SUCCESS',
-            text: 'Se agrego la variedad al producto',
-            type:  'success'
-        })
-        this.init_variedades()
-      })  
-    },
-    generar_sku(){
-        let sku = (this.producto.clave+'-'+this.variedad.color.substring(0,3)+'-'+this.variedad.talla.substring(0,2)).toUpperCase();
-        return sku
-    },
-    init_variedades(){
-        axios.get(this.$url+'/obtener_variedades_producto/'+this.$route.params.id,{
-            headers:{
-                'Content-Type': 'application/json',
-                'Authorization': this.$store.state.token,
-            }
-        }).then((result)=>{
-            this.variedades = result.data;
-        })
-    },
-    eliminar_variedad(id){
-      axios.delete(this.$url+'/eliminar_variedades_producto/'+id,{
-        headers:{
-          'Content-Type': 'application/json',
-          'Authorization': this.$store.state.token,
-        }
-      }).then((result)=>{
-        if(result.data.message){
-          this.$notify({
-          title: 'ERROR',
-          text: result.data.message,
-          type: 'error'
-        })
-        }else{
-          this.$notify({
-          title: 'SUCCESS',
-          text: 'Se elimino la variedad',
-          type: 'success'
-        })
-        this.init_variedades()
-        } 
-      });
-    },
+    
     init_categorias(){
       axios.get(this.$url+'/listar_categorias',{
         headers:{
@@ -590,7 +510,6 @@ export default {
 },
   beforeMount(){
     this.init_data();
-    this.init_variedades()
     this.init_categorias()
   },
 }
