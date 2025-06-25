@@ -93,7 +93,7 @@
 
                         <!-- Title -->
                         <h4 class="mb-1 name">
-                            <a href="profile-posts.html">{{ item.colores.color }}</a>
+                            <a>{{ item.colores.color }}</a>
                         </h4>
 
                         <!-- Time -->

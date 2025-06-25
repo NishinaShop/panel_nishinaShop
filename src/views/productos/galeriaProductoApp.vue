@@ -98,14 +98,14 @@
                   </div>
                   <!-- / .row -->
 
-                  <div class="row listAlias border mb-3" style="backgroundColor: white; border-radius: 10px;" v-if="!load_galeria" v-for="item in galeria">
-                    <h2 class="mt-3">Color: {{item.color.color}}</h2>
+                  <div class="row listAlias border mb-3" style="background-Color: white; border-radius: 10px;" v-if="!load_galeria" v-for="item in galeria">
+                    <h2 class="mt-3" > <span :style="{color: item.color.codigo_color}">●</span> Color: {{item.color.color}} </h2>
                     <div class="col-12 col-md-6 col-xl-4" v-for="sub in item.imagenes" >
                       <div class="card" >
                         <a >
                           
                           <img
-                            :src="sub"
+                            :src="sub.imagen"
                             style="height: 250px; width: 190px"
                             class="card-img-top"
                           />
@@ -114,7 +114,7 @@
                         <div class="card-footer card-footer-boxed">
                           <div class="row">
                             <div class="col text-center">
-                              <a type="button" @click="eliminar_imagen(item._id)"class="text-danger" style="cursor:pointer">Eliminar imagen</a>
+                              <a type="button" @click="eliminar_imagen(sub.id)"class="text-danger" style="cursor:pointer">Eliminar imagen</a>
                             </div>
                           </div>
                           <!-- / .row -->
