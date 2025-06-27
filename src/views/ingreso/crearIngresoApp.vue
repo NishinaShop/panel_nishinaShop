@@ -120,8 +120,8 @@
 <div class="col-md-12 mb-4">
     <h3><b>Productos del ingreso</b></h3>
 </div>
-
-<div class="col-12 col-md-6">
+<Small class="text-end text-muted mb-4">Nota: Agrega todos los productos de una factura  en un solo <br> ingreso, no es necesario un ingreso por producto.</Small>
+<div class="col-12 col-md-12">
 
 <!-- First name -->
 <div class="form-group">
@@ -131,7 +131,7 @@
     Producto
     </label>
     <small class="form-text text-muted">
-        Selecciona el producto
+        Selecciona el producto:
     </small>
     <!-- Input -->
     <model-select  :options="productos" 
@@ -145,35 +145,46 @@
 
 </div>
 
-<div class="col-12 col-md-6">
+ <!-- Selección de Color -->
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label class="form-label">Color</label>
+        <small class="form-text text-muted">Selecciona el color:</small>
+        <select 
+          class="form-select mb-3"
+          v-model="colorSeleccionado"
+          @change="filtrarTallas">
+          <option value="" disabled selected>Seleccionar</option>
+          <option 
+            v-for="item in variedades" 
+            :key="item._id" 
+            :value="item">
+            {{ item.colores.color.toUpperCase() }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-<!-- First name -->
-<div class="form-group">
-
-    <!-- Label -->
-    <label class="form-label">
-    Variedad
-    </label>
-    <small class="form-text text-muted">
-        Selecciona la variedad
-    </small>
-    <!-- Input -->
-    <select 
-    class="form-select mb-3" 
-    v-model="detalle.variedad" 
-    @change="informacion_producto($event)">
-    <option value="" selected disabled>Seleccionar</option>
-    <option 
-      v-for="item in variedades" 
-      :value="item._id"
-      :data-texto="`${item.color}-${item.talla}`">
-      {{ item.color.toUpperCase() }} - {{ item.talla.toUpperCase() }} - {{ item.stock }}
-    </option>
-  </select>
-
-</div>
-
-</div>
+    <!-- Selección de Talla -->
+    <div class="col-12 col-md-6" v-if="tallasFiltradas.length > 0">
+      <div class="form-group">
+        <label class="form-label">Talla</label>
+        <small class="form-text text-muted">Selecciona la talla:</small>
+        <select 
+          class="form-select mb-3"
+          v-model="detalle.variedad"
+          @change="informacion_producto($event)">
+          <option value="" disabled selected>Seleccionar</option>
+          <option 
+            v-for="t in tallasFiltradas" 
+            :key="t._id"
+            :value="t._id"
+            :data-texto="`Color: ${colorSeleccionado.colores.color} - Talla: ${t.talla}`">
+            {{ t.talla.toUpperCase() }} - Stock: {{ t.stock }}
+          </option>
+        </select>
+      </div>
+    </div>
 
 
 <div class="col-12 col-md-6">
@@ -204,7 +215,7 @@
     Cantidad total
     </label>
     <small class="form-text text-muted">
-        Ingresa cantidad de unidades que ingresan al stock
+        Ingresa la cantidad a ingresar al stock
     </small>
     <!-- Input -->
     <input type="number" class="form-control mb-3" placeholder="0" v-model="detalle.cantidad" >
@@ -308,9 +319,18 @@ Ingresar datos
         variedades:[],
         descripcion_var: {},
         total: 0,
+        colorSeleccionado: null,    
+        tallasFiltradas: [],
        }
     },
     methods:{
+        filtrarTallas() {
+    if (this.colorSeleccionado && this.colorSeleccionado.tallas) {
+      this.tallasFiltradas = this.colorSeleccionado.tallas;
+    } else {
+      this.tallasFiltradas = [];
+    }
+  },
     uploadComprobante($event){
         var file;
         if($event.target.files.length >= 1){
@@ -368,13 +388,15 @@ Ingresar datos
       this.detalle.inf_variedad = selectedOption.dataset.texto;
     },
     init_variedades(id){
-        axios.get(this.$url+'/obtener_variedades_producto/'+id,{
+        axios.get(this.$url+'/obtener_colores/'+id,{
             headers:{
             'Content-Type': 'application/json',
             'Authorization': this.$store.state.token
             }
         }).then((result)=>{   
             this.variedades = result.data
+            console.log(this.variedades);
+            
         })
     },
     agregar_detalle(){
@@ -459,6 +481,8 @@ Ingresar datos
         }
     },
     conexion_registro(){
+        console.log(this.detalles);
+        
         var fm = new FormData();
         fm.append('proveedor',this.ingreso.proveedor);
         fm.append('ncomprobante',this.ingreso.ncomprobante);
