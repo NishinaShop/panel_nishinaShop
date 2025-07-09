@@ -388,6 +388,7 @@ Ingresar datos
         this.detalle.titulo_producto = item.text;
         this.detalle.talla = ''
         this.tallasFiltradas= []
+        this.colorSeleccionado = []
     },
     informacion_producto(event){
       const selectedOption = event.target.options[event.target.selectedIndex];

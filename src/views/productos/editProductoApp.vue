@@ -405,10 +405,16 @@ export default {
     },
     actualizar() {
       if(this.producto.descuento === true){
-        if(this.producto.desc_porcentaje > 100){
+        if(this.producto.desc_porcentaje > 100 ){
           this.$notify({
             title: 'ATENCIÓN',
             text: 'Ingresa un porcentaje valido',
+            type: 'warn'
+          })
+        }else if(this.producto.desc_porcentaje != ''){
+          this.$notify({
+            title: 'ATENCIÓN',
+            text: 'Ingresa el porcentaje',
             type: 'warn'
           })
         }else {
@@ -465,7 +471,7 @@ export default {
   formData.append('descripcion', this.producto.descripcion);
   formData.append('estado', this.producto.estado);
   formData.append('descuento', this.producto.descuento);
-
+  formData.append('precio', this.producto.precio)
   // Solo agrega la imagen si existe
   if (this.portada instanceof File) {
     formData.append('portada', this.portada);

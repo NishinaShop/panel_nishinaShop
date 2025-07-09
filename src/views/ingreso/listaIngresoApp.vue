@@ -87,6 +87,14 @@
                                 </router-link></button>
                                 
                             </td>
+                            <td><div class="dropdown">
+                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                        </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item text-danger"style="cursor:pointer" @click="eliminar_ingreso(item._id)">Eliminar</a>
+                            </div>
+                        </div></td>
                             </tr>
                         </tbody>
                         <tbody v-if="ingresos.length == 0">
@@ -175,6 +183,29 @@
             convertCurrency(number){
                 return currencyFormatter.format(number,{code:'MXN'})
             },
+            eliminar_ingreso(id){
+                axios.delete(this.$url+'/eliminar_ingreso_admin/'+id,{
+                    headers:{
+                        'Content-type': 'application/json',
+                        'Authorization': this.$store.state.token,
+                    }
+                }).then((result)=>{
+                    if(result.data.message){
+                        this.$notify({
+                              title: 'SUCCESS',
+                              text: result.data.message,
+                              type: 'success',
+                            })
+                    }else{
+                        this.$notify({
+                              title: 'SUCCESS',
+                              text: 'Producto eliminado',
+                              type: 'success',
+                            })
+                    this.init_data()
+                    }
+                })
+            }
     },
     beforeMount(){
     
