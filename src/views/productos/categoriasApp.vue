@@ -44,7 +44,7 @@
               <small >Nota:Las categorias no se pueden eliminar, verificar antes de agregar</small>
             </div>
             
-            <div class="card">
+        <div class="card" v-if="!load_data">
     <div class="card-body">
         <ul class="list-group list-group-flush list my-n3">
             <li class="list-group-item" v-for="item in categorias">
@@ -89,7 +89,16 @@
             </li>
         </ul>
     </div>
-</div>
+        </div>
+        <div class="card" v-if="load_data">
+            <div class="card-body">
+                <ul class="list-group list-group-flush list my-n3">
+                    <div class="text-center">
+                      <img src="https://res.cloudinary.com/dqitdaxd8/image/upload/kOnzy_ikzcfe.gif" style="height: 50px;">
+                    </div>
+                </ul>
+            </div>
+        </div>
           </div>
         </div>
         <!-- / .row -->
@@ -109,7 +118,8 @@
         return{
             add_category : false,
             nueva_categoria: '',
-            categorias: []
+            categorias: [],
+            load_data: false
         }
     },
     beforeMount(){
@@ -149,6 +159,7 @@
       }
       },
       init_data(){
+        this.load_data = true
       axios.get(this.$url+'/listar_categorias',{
         headers:{
           'Content-type': 'application/json',
@@ -157,6 +168,7 @@
       }).then((result)=>{
         this.categorias = result.data
         console.log(this.categorias);
+        this.load_data = false
         
       })
       },

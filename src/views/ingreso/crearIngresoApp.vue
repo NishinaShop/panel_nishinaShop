@@ -166,20 +166,20 @@
     </div>
 
     <!-- Selección de Talla -->
-    <div class="col-12 col-md-6" v-if="tallasFiltradas.length > 0">
+    <div class="col-12 col-md-6" >
       <div class="form-group">
         <label class="form-label">Talla</label>
         <small class="form-text text-muted">Selecciona la talla:</small>
         <select 
           class="form-select mb-3"
-          v-model="detalle.variedad"
+          v-model="detalle.talla"
           @change="informacion_producto($event)">
           <option value="" disabled selected>Seleccionar</option>
           <option 
             v-for="t in tallasFiltradas" 
             :key="t._id"
             :value="t._id"
-            :data-texto="`Color: ${colorSeleccionado.colores.color} - Talla: ${t.talla}`">
+            :data-texto="`${t.talla}`">
             {{ t.talla.toUpperCase() }} - Stock: {{ t.stock }}
           </option>
         </select>
@@ -226,7 +226,7 @@
 
 <div class="col-md-6 ">
     
-    <button class="btn btn-primary" style="margin-bottom: 1.8rem!important;" v-on:click="agregar_detalle()">
+    <button class="btn btn-primary" style="margin-bottom: 1.8rem!important;" v-on:click="agregar_detalle()" v-if="detalle.talla">
         Agregar
     </button>
 </div>
@@ -250,7 +250,7 @@
             <td>
                 <a>{{ item.titulo_producto }}</a>
                 <div>
-                    <small>{{item.inf_variedad}}</small>
+                    <small>Color: {{item.inf_color}} - Talla: {{item.inf_talla}}</small>
                 </div>
             </td>
             <td>
@@ -261,7 +261,7 @@
             </td>
             <td> {{ convertCurrency(item.precio_unidad * item.cantidad ) }}</td>
             <td>
-                <button class="btn btn-danger btn-sm" v-on:click="eliminar_detalle(index,item.precio_unidad * item.cantidad )">Quitar</button>
+                <button class="btn btn-danger btn-sm" v-on:click="eliminar_detalle(index,item.precio_unidad * item.cantidad )">X</button>
             </td>
             </tr>
             
@@ -308,9 +308,10 @@ Ingresar datos
             proveedor: ''
         },
         detalle:{
-            variedad: '',
+            talla: '',
             producto: '',
-            inf_variedad: '',
+            inf_talla: '',
+            inf_color: ''
         },
         detalles:[],
         comprobante: undefined,
@@ -327,6 +328,10 @@ Ingresar datos
         filtrarTallas() {
     if (this.colorSeleccionado && this.colorSeleccionado.tallas) {
       this.tallasFiltradas = this.colorSeleccionado.tallas;
+      this.detalle.color = this.colorSeleccionado.colores._id
+      this.detalle.inf_color = this.colorSeleccionado.colores.color
+      console.log(this.detalle.color);
+      
     } else {
       this.tallasFiltradas = [];
     }
@@ -381,11 +386,13 @@ Ingresar datos
         this.init_variedades(item.value)
         this.detalle.producto = item.value;
         this.detalle.titulo_producto = item.text;
+        this.detalle.talla = ''
+        this.tallasFiltradas= []
     },
     informacion_producto(event){
       const selectedOption = event.target.options[event.target.selectedIndex];
       
-      this.detalle.inf_variedad = selectedOption.dataset.texto;
+      this.detalle.inf_talla = selectedOption.dataset.texto;
     },
     init_variedades(id){
         axios.get(this.$url+'/obtener_colores/'+id,{
@@ -406,10 +413,16 @@ Ingresar datos
                 text: 'Selecciona un producto',
                 type:'warn'
             })
-        }else if(!this.detalle.variedad){
+        }else if(!this.detalle.color){
             this.$notify({
                 title: 'ATENCIÓN',
-                text: 'Selecciona la variedad',
+                text: 'Selecciona la talla',
+                type:'warn'
+            })
+        }else if(!this.detalle.talla){
+            this.$notify({
+                title: 'ATENCIÓN',
+                text: 'Selecciona la talla',
                 type:'warn'
             })
         }else if(!this.detalle.precio_unidad){
@@ -430,9 +443,11 @@ Ingresar datos
             let subtotal = this.detalle.precio_unidad * this.detalle.cantidad;
             this.total = this.total + subtotal;
             this.detalle = {
-                variedad: ''
+                talla: '',
+                color: ''
             }
             this.producto = {};
+            
             }
             console.log(this.detalles)
     },
@@ -469,6 +484,12 @@ Ingresar datos
                 text: 'Agrega una factura al ingreso',
                 type:'warn'
             })
+        }else if(this.detalles.length < 1) {
+            this.$notify({
+                title: 'ATENCIÓN',
+                text: 'No puedes registrar el ingreso sin productos',
+                type:'warn'
+            })
         }else if(this.total > this.ingreso.monto_total) {
             this.$notify({
                 title: 'ATENCIÓN',
@@ -477,7 +498,6 @@ Ingresar datos
             })
         }else {
             this.conexion_registro()
-            this.ingreso.documento=''
         }
     },
     conexion_registro(){
@@ -497,6 +517,7 @@ Ingresar datos
             'Authorization': this.$store.state.token
         }
         }).then((result)=>{
+            console.log(result)
             if(result.data.message){
                 this.$notify({
                 title: 'ERROR',

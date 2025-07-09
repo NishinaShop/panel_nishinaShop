@@ -29,6 +29,7 @@ const routes = [
   {path: '/salidas', name: 'lista-salidas', component:()=> import('@/views/salidas/salidasApp.vue'),meta: {requiresAuth: true}},
   /*Inventario*/
   {path: '/inventario', name: 'lista-inventario', component:()=> import ('@/views/inventario/inventarioApp.vue'),meta: {requiresAuth: true}},
+  {path: '/inventario/detalle/:id', name: 'detalle-inventario', component:()=> import ('@/views/inventario/detalleInventarioApp.vue'), meta: {requiresAuth: true}},
   /*Extraoridario*/
   {path: '/extraordinario', name: 'lista-extra', component:()=> import ('@/views/extraordinario/indexExtraApp.vue'),meta: {requiresAuth: true}},
   {path: '/extraordinario/salida', name: 'salida-extra', component:()=> import ('@/views/extraordinario/salidaExtraApp.vue'),meta: {requiresAuth: true}},

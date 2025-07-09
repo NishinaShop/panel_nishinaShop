@@ -100,7 +100,7 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button"class="btn btn-primary btn-sm"> <router-link :to="{name: 'detalle-ingreso', params:{id:   item._id}}">
+                                <button type="button"class="btn btn-primary btn-sm"> <router-link :to="{name: 'detalle-inventario', params:{id:   item._id}}">
                                     <b class="text-white">detalles</b>
                                 </router-link></button>
                                 

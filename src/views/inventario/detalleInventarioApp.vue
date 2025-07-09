@@ -14,7 +14,7 @@
                         <!-- Pretitle -->
                         <h6 class="header-pretitle">Panel de administración</h6>
                         <!-- Title -->
-                        <h1 class="header-title">Detalles del ingreso</h1>
+                        <h1 class="header-title">Detalles del producto</h1>
                       </div>
                     </div>
                     <!-- / .row -->
@@ -23,12 +23,9 @@
                         <!-- Nav -->
                         <ul class="nav nav-tabs nav-overflow header-tabs">
                           <li class="nav-item">
-                            <router-link class="nav-link" to="/ingreso">
-                               Ingresos
+                            <router-link class="nav-link" to="/inventario">
+                               Todas las existencias
                             </router-link>
-                          </li>
-                          <li class="nav-item">
-                            <router-link class="nav-link" to="/ingreso/crear">Nuevo ingreso </router-link>
                           </li>
                         </ul>
                       </div>
@@ -37,6 +34,30 @@
                 </div>
                 
                 <div class="row">
+                  <div class="col-12 col-md-12">
+                        <div class="card">
+                        <div class="card-body">
+                          <div class="row align-items-center">
+                                <div class="col">
+
+                                    <!-- Title -->
+                                    <h5 class="mb-0">
+                                    Nombre:
+                                    </h5>
+
+                                </div>
+                                <div class="col-auto">
+
+                                    <!-- Time -->
+                                    <time class="small text-muted" datetime="1988-10-24">
+                                    {{producto.nombre}}
+                                    </time>
+
+                                </div>
+                                </div> <!-- / .row -->
+                        </div>  
+                        </div>
+                        </div>
                     <div class="col-12 col-md-6">
                         <div class="card">
                         <div class="card-body">
@@ -49,7 +70,7 @@
 
                                     <!-- Title -->
                                     <h5 class="mb-0">
-                                    Proveedor:
+                                    Clave:
                                     </h5>
 
                                 </div>
@@ -57,7 +78,7 @@
 
                                     <!-- Time -->
                                     <time class="small text-muted" datetime="1988-10-24">
-                                    {{ingreso.proveedor}}
+                                    {{producto.clave}}
                                     </time>
 
                                 </div>
@@ -69,7 +90,7 @@
 
                                     <!-- Title -->
                                     <h5 class="mb-0">
-                                    Comprobante:
+                                    Genero:
                                     </h5>
 
                                 </div>
@@ -77,7 +98,7 @@
 
                                     <!-- Time -->
                                     <time class="small text-muted" datetime="2018-10-28">
-                                    {{ingreso.ncomprobante}}
+                                    {{producto.genero}}
                                     </time>
 
                                 </div>
@@ -89,7 +110,7 @@
 
                                     <!-- Title -->
                                     <h5 class="mb-0">
-                                    Serie:
+                                    Categoria:
                                     </h5>
 
                                 </div>
@@ -97,11 +118,36 @@
 
                                     <!-- Text -->
                                     <small class="text-muted">
-                                    #{{ingreso.serie.toString().padStart(6,'0')}}
+                                    {{producto.categoria}}
                                     </small>
 
                                 </div>
                                 </div> <!-- / .row -->
+                                
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                <div class="col">
+
+                                    <!-- Title -->
+                                    <h5 class="mb-0">
+                                    Estado:
+                                    </h5>
+
+                                </div>
+                                <div class="col-auto">
+
+                                    <!-- Text -->
+                                    <div class="badge bg-success" v-if="producto.estado">
+                                    Activo
+                                    </div>
+                                    <div class="badge bg-warning" v-if="!producto.estado">
+                                    Inactivo
+                                    </div>
+
+                                </div>
+                                </div> <!-- / .row -->
+                                
                             </div>
                             </div>
 
@@ -120,16 +166,58 @@
 
                                         <!-- Title -->
                                         <h5 class="mb-0">
-                                        Monto total:
+                                        Descuento:
                                         </h5>
 
                                     </div>
                                     <div class="col-auto">
 
                                         <!-- Time -->
-                                        <time class="small text-muted" datetime="1988-10-24">
-                                        {{ convertCurrency(ingreso.monto_total) }}
+                                       <div class="badge bg-dark" v-if="!producto.descuento">
+                                        Sin descuento
+                                       </div>
+                                       <div class="badge bg-primary" v-if="producto.descuento">
+                                        En descuento
+                                       </div>
+                                    </div>
+                                    </div> <!-- / .row -->
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                        Precio:
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="2018-10-28">
+                                        {{  convertCurrency(producto.precio)}}
                                         </time>
+
+                                    </div>
+                                    </div> <!-- / .row -->
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                        Stock:
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Text -->
+                                        <small class="text-muted">
+                                        {{ producto.stock }}
+                                        </small>
 
                                     </div>
                                     </div> <!-- / .row -->
@@ -146,29 +234,9 @@
                                     </div>
                                     <div class="col-auto">
 
-                                        <!-- Time -->
-                                        <time class="small text-muted" datetime="2018-10-28">
-                                        {{ cDate(ingreso.createdAt) }}
-                                        </time>
-
-                                    </div>
-                                    </div> <!-- / .row -->
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                    <div class="col">
-
-                                        <!-- Title -->
-                                        <h5 class="mb-0">
-                                        Colaborador:
-                                        </h5>
-
-                                    </div>
-                                    <div class="col-auto">
-
                                         <!-- Text -->
                                         <small class="text-muted">
-                                        {{ usuario.nombre }}
+                                        {{ cDate(producto.createdAt)}}
                                         </small>
 
                                     </div>
@@ -181,12 +249,12 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card"  v-for="item in variedades">
                     <div class="card-header">
 
                         <!-- Title -->
                         <h4 class="card-header-title mb-0">
-                            <b>Productos</b>
+                            <b>Color: {{ item.colores.color }}</b>
                         </h4>
 
                     </div>
@@ -194,25 +262,21 @@
                         <table class="table table-sm table-nowrap card-table">
                         <thead>
                             <tr>
-                            <th>Producto:</th>
-                            <th>Variedad:</th>
-                            <th>Precio unidad:</th>
-                            <th>Cantidad:</th>
+                            <th>Talla:</th>
+                            <th>SKU:</th>
+                            <th>Stock:</th>
                             </tr>
                         </thead>
                         <tbody class="fs-base">
-                            <tr v-for="item in detalles">
+                            <tr v-for="sub in item.tallas">
                             <td>
-                                <a v-if="item.producto">{{ item.producto.nombre }}</a>
+                                <a>{{ sub.talla }}</a>
                             </td>
                             <td>
-                                <time datetime="2020-04-24">{{ item.color.color+' - '+item.talla.talla }}</time>
+                                <time datetime="2020-04-24">{{ sub.sku}}</time>
                             </td>
                             <td>
-                                {{convertCurrency(item.precio_unidad)}}
-                            </td>
-                            <td>
-                                <span>{{ item.cantidad }}</span>
+                                {{sub.stock}}
                             </td>
                             </tr>
                             
@@ -237,7 +301,7 @@
   import topNav from "@/components/topNav.vue";
   
   export default {
-    name: 'detalleIngresoApp',
+    name: 'detalleInventarioApp',
     data(){
       return{
         ingreso:{
@@ -248,7 +312,9 @@
         ],
         usuario: {
             nombre: ''
-        }
+        },
+        producto: {},
+        variedades:{}
       }
     },
     beforeMount(){
@@ -256,17 +322,15 @@
     },
     methods:{
       init_data(){
-        axios.get(this.$url+'/obtener_detalles_ingreso_admin/'+this.$route.params.id,{
+        axios.get(this.$url+'/detalle_inventario/'+this.$route.params.id,{
           headers:{
             'Content-Type': 'application/json',
             'Authorization': this.$store.state.token
           }
         }).then((result)=>{
-            
-          this.ingreso = result.data.Ingreso
-          this.detalles = result.data.detalles
-          this.usuario = result.data.colaborador
-          console.log(this.detalles);
+          
+          this.producto = result.data.product
+          this.variedades = result.data.variedades
           
         })
       },
