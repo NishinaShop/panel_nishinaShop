@@ -404,6 +404,8 @@ export default {
       }
     },
     actualizar() {
+      console.log(this.producto.desc_porcentaje);
+      
       if(this.producto.descuento === true){
         if(this.producto.desc_porcentaje > 100 ){
           this.$notify({
@@ -411,12 +413,17 @@ export default {
             text: 'Ingresa un porcentaje valido',
             type: 'warn'
           })
-        }else if(this.producto.desc_porcentaje != ''){
-          this.$notify({
-            title: 'ATENCIÓN',
-            text: 'Ingresa el porcentaje',
-            type: 'warn'
-          })
+        }else if(this.producto.desc_porcentaje === '' ||
+  this.producto.desc_porcentaje === null ||
+  this.producto.desc_porcentaje === undefined ||
+  isNaN(this.producto.desc_porcentaje) ||
+  parseFloat(this.producto.desc_porcentaje) <= 0
+) {
+  this.$notify({
+    title: 'ATENCIÓN',
+    text: 'Ingresa un porcentaje válido',
+    type: 'warn'
+  });
         }else {
           this.calcular_descuento()
         console.log(this.total);
