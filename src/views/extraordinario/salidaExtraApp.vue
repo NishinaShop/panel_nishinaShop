@@ -313,7 +313,7 @@
             text: 'Se guardo el registro',
             type: 'success'
           })
-          
+          this.$router.push({name:  'lista-extra'})
             }
           
         })
