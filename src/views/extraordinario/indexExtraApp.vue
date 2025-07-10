@@ -85,8 +85,8 @@
                             <th>Nombre:</th>
                             <th>Variedad:</th>
                             <th>Precio:</th>
-                            <th>Cantidad:</th>
-                            <th>Fecha:</th>
+                            <th>Cant:</th>
+                            <th>Tipo:</th>
                             
                             </tr>
                         </thead>
@@ -109,7 +109,7 @@
                                 
                             </td>
                             <td>
-                                <small datetime="2020-04-24">{{cDate(item.createdAt)}} </small>
+                                <small datetime="2020-04-24">{{item.movimiento}} </small>
                             </td>
                             </tr>
                         </tbody>
