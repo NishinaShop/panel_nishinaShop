@@ -23,7 +23,7 @@
                     <!-- Nav -->
                     <ul class="nav nav-tabs nav-overflow header-tabs">
                         <li class="nav-item">
-                        <router-link to="/extraordinario" class="nav-link">Todos los registro</router-link>
+                        <router-link to="/extraordinario" class="nav-link">Todos los registros</router-link>
                       </li>
                       
                       <li class="nav-item">
@@ -301,21 +301,20 @@
             'Authorization': this.$store.state.token
           }
         }).then((result)=>{
-          if(result.data.message){
+          if(result.data.message == 'guardado'){
             this.$notify({
-            title: 'ATENCIÓN',
-            text: result.data.message,
-            type: 'warn'
-          })
-          }else{
-          this.$notify({
             title: 'EXITO',
             text: 'Se guardo el registro',
             type: 'success'
           })
           this.$router.push({name:  'lista-extra'})
-            }
-          
+          }else{
+            this.$notify({
+            title: 'EXITO',
+            text: result.data.message,
+            type: 'success'
+          })
+          }
         })
       }
     }

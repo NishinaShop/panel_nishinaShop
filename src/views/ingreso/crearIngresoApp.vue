@@ -491,10 +491,10 @@ Ingresar datos
                 text: 'No puedes registrar el ingreso sin productos',
                 type:'warn'
             })
-        }else if(this.total > this.ingreso.monto_total) {
+        }else if(this.total != this.ingreso.monto_total) {
             this.$notify({
                 title: 'ATENCIÓN',
-                text: 'El total de las variedades no puede ser mayor al de la factura',
+                text: 'El total de las variedades no concuerda con la factura',
                 type:'warn'
             })
         }else {

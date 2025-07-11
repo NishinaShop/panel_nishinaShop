@@ -300,21 +300,20 @@
             'Authorization': this.$store.state.token
           }
         }).then((result)=>{
-          if(result.data.message){
-            this.$notify({
-            title: 'ATENCIÓN',
-            text: result.data.message,
-            type: 'warn'
-          })
-          }else{
+         if(result.data.message == 'guardado'){
             this.$notify({
             title: 'EXITO',
             text: 'Se guardo el registro',
             type: 'success'
           })
           this.$router.push({name:  'lista-extra'})
-            }
-          
+          }else{
+            this.$notify({
+            title: 'EXITO',
+            text: result.data.message,
+            type: 'success'
+          })
+          }
         })
       }
     }

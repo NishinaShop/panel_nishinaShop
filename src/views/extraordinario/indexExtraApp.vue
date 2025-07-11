@@ -109,7 +109,7 @@
                                 
                             </td>
                             <td>
-                                <small datetime="2020-04-24">{{item.movimiento}} </small>
+                                <small datetime="2020-04-24">{{item.registro}} </small>
                             </td>
                             </tr>
                         </tbody>
@@ -123,10 +123,10 @@
                                                     Sin registros.
                                                 </h6>
                                                 <h1 class="mb-3">
-                                                <b>No hay registros con los parametros actuales</b>
+                                                <b>No hay registros que mostrar</b>
                                                 </h1>
                                                  <p class="text-muted mb-4">
-                                                    Ingresa un rango de busqueda diferente 
+                                                    No se encontraron registros guardados 
                                                 </p>
                                             </div>
                                         </div>
