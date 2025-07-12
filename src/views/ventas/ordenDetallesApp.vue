@@ -316,7 +316,7 @@
                     <h4 class="fw-normal mb-1">{{ item.producto.nombre }}</h4>
 
                     <!-- Text -->
-                    <small class="text-muted">{{ item.variedad.color }} - {{ item.variedad.talla }}</small>
+                    <small class="text-muted">{{ item.color.color }} - {{ item.talla.talla }}</small>
 
                     </div>
 
