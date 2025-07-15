@@ -93,7 +93,8 @@
                         <tbody class="fs-base" v-if="registros.length >= 1">
                             <tr v-for="item in  registros">
                             <td>
-                                <a >{{item.producto.nombre}}</a>
+                                <a v-if="!item.producto.nombre">Producto borrado</a>
+                                <a v-if="item.producto.nombre">{{item.producto.nombre}}</a>
                             </td>
                             
                             <td>
