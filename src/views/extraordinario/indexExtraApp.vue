@@ -98,7 +98,8 @@
                             </td>
                             
                             <td>
-                                {{ item.color.color }} - {{ item.talla.talla }} 
+                            <span v-if="!item.color.color">-</span>
+                               <span v-if="item.color.color">{{ item.color.color }} - {{ item.talla.talla }} </span> 
                             </td>
                             <td>
                                 <span v-if="!item.precio">s/m</span>
@@ -110,7 +111,8 @@
                                 
                             </td>
                             <td>
-                                <small datetime="2020-04-24">{{item.registro}} </small>
+                            <small datetime="2020-04-24" v-if="!item.registro">-</small>
+                                <small datetime="2020-04-24" v-if="item.registro">{{item.registro}} </small>
                             </td>
                             </tr>
                         </tbody>
