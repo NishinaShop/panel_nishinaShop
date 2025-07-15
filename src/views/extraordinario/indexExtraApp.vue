@@ -98,8 +98,8 @@
                             </td>
                             
                             <td>
-                            <span v-if="!item.color.color">-</span>
-                               <span v-if="item.color.color">{{ item.color.color }} - {{ item.talla.talla }} </span> 
+                            <span v-if="!item.color.color && !item.talla.talla">-</span>
+                               <span v-if="item.color.color && item.talla.talla">{{ item.color.color }} - {{ item.talla.talla }} </span> 
                             </td>
                             <td>
                                 <span v-if="!item.precio">s/m</span>
