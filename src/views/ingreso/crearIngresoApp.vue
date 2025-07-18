@@ -81,7 +81,7 @@
 
     <!-- Label -->
     <label class="form-label">
-        Monto total
+        Monto de la factura
     </label>
     <small class="form-text text-muted">
         Monto total pagado al proveedor.
@@ -185,8 +185,21 @@
         </select>
       </div>
     </div>
+<div class="col-12 col-md-6">
+<div class="form-group">
 
+    <!-- Label -->
+    <label class="form-label">
+    Precio  factura
+    </label>
+    <small class="form-text text-muted">
+        Ingresa el precio del producto en factura
+    </small>
+    <!-- Input -->
+    <input type="text" class="form-control mb-3" placeholder="0.00" v-model="detalle.precio_factura">
 
+</div>
+</div>
 <div class="col-12 col-md-6">
 
 <!-- Phone -->
@@ -194,10 +207,10 @@
 
     <!-- Label -->
     <label class="form-label">
-    Precio unidad
+    Precio venta
     </label>
     <small class="form-text text-muted">
-        Ingresa el precio por unidad
+        Ingresa el precio de vental al publico
     </small>
     <!-- Input -->
     <input type="text" class="form-control mb-3" placeholder="0.00" v-model="detalle.precio_unidad">
@@ -205,9 +218,8 @@
 </div>
 
 </div>
-<div class="col-12 col-md-6">
-
 <!-- Birthday -->
+ <div class="col-12 col-md-6">
 <div class="form-group">
 
     <!-- Label -->
@@ -224,9 +236,9 @@
 
 </div>
 
-<div class="col-md-6 ">
+<div class="col-12 col-md-6 ">
     
-    <button class="btn btn-primary" style="margin-bottom: 1.8rem!important;" v-on:click="agregar_detalle()" v-if="detalle.talla">
+    <button class="btn btn-primary " style="margin-top: 3.6rem!important;" v-on:click="agregar_detalle()" >
         Agregar
     </button>
 </div>
@@ -254,14 +266,14 @@
                 </div>
             </td>
             <td>
-        <time datetime="2020-04-24">{{ convertCurrency(item.precio_unidad) }}</time>
+        <time datetime="2020-04-24">{{ convertCurrency(item.precio_factura) }}</time>
             </td>
             <td>
                 {{ item.cantidad }}
             </td>
-            <td> {{ convertCurrency(item.precio_unidad * item.cantidad ) }}</td>
+            <td> {{ convertCurrency(item.precio_factura * item.cantidad ) }}</td>
             <td>
-                <button class="btn btn-danger btn-sm" v-on:click="eliminar_detalle(index,item.precio_unidad * item.cantidad )">X</button>
+                <button class="btn btn-danger btn-sm" v-on:click="eliminar_detalle(index,item.precio_factura * item.cantidad )">X</button>
             </td>
             </tr>
             
