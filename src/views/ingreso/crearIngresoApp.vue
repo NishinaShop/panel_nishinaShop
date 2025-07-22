@@ -453,7 +453,7 @@ Ingresar datos
             }else{
             this.detalles.push(this.detalle);
             console.log(this.detalles)
-            let subtotal = this.detalle.precio_unidad * this.detalle.cantidad;
+            let subtotal = this.detalle.precio_factura * this.detalle.cantidad;
             this.total = this.total + subtotal;
             this.detalle = {
                 talla: '',
