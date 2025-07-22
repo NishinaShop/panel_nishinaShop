@@ -202,7 +202,7 @@
                               text: 'Producto eliminado',
                               type: 'success',
                             })
-                    this.ingresos= []
+                    this.ingresos.length = 0
                     }
                 })
             }

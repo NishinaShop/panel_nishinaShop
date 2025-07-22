@@ -472,7 +472,8 @@ Ingresar datos
         this.total = this.total - subtotal 
     },
     registro_ingreso(){
-        
+       this.total = parseFloat(this.total.toFixed(2));
+
         if(!this.ingreso.proveedor){
             this.$notify({
                 title: 'ATENCIÓN',
