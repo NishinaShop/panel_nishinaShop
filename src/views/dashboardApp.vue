@@ -23,7 +23,7 @@
               <div class="col-6 col-md-4" v-for="card in cards" :key="card.title">
                 <div class="card text-white" :class="card.bg">
                   <div class="card-body">
-                    <h2 class="card-title">{{ card.title }}</h2>
+                    <h3 class="card-title">{{ card.title }}</h3>
                     <h4 class="card-text fw-bold">{{ card.value }}</h4>
                   </div>
                 </div>
