@@ -8,6 +8,7 @@ import {bootstrapVue} from 'bootstrap-vue-next';
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'vue-search-select/dist/VueSearchSelect.css'
 
+
 const app = createApp(App);
 app.use(Notifications);
 app.use(Paginate);

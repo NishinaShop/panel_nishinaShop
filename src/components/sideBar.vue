@@ -89,25 +89,14 @@
               aria-expanded="true"
               aria-controls="sidebarDashboards"
             >
-              <i class="fe fe-home"></i> Dashboard
+              <i class="fe fe-home"></i> inicio
             </a>
             <div class="collapse show" id="sidebarDashboards">
               <ul class="nav nav-sm flex-column">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">  </a>
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="./dashboard-project-management.html"
-                    class="nav-link"
-                  >
-                    
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="./dashboard-ecommerce.html" class="nav-link">
-                    
-                  </a>
+                  <router-link to="/dashboard" class="nav-link">
+                    Dashboard
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -116,14 +105,7 @@
             <router-link to="/colaborador" class="nav-link" active-class="active"><i class="fe fe-user"></i> Colaboradores</router-link>
           </li>
           <li class="nav-item d-md-none">
-            <a
-              class="nav-link"
-              data-bs-toggle="offcanvas"
-              href="#sidebarOffcanvasActivity"
-              aria-contrtols="sidebarOffcanvasActivity"
-            >
-              <span class="fe fe-bell"></span> Notifications
-            </a>
+            
           </li>
         </ul>
         <hr class="navbar-divider my-3">
